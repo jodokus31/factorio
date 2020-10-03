@@ -1,0 +1,11 @@
+{
+  "name": "spice-rack-oil-change",
+  "version": "0.0.1",
+  "title": "The Spice Rack - Oil Change",
+  "author": "jodokus31",
+  "contact": "",
+  "homepage": "",
+  "description": "The Spice Rack is intended to spice up the vanilla game, without changing too much. Each change can be disabled individually.\n\nChange basic oil processing to output gas and heavy oil. Sulfur comes from heavy oil. Chemical science is not necessary for robotics technologies anymore",
+  "factorio_version":"1.0",
+  "dependencies": ["base >= 1.0.0", "spice-rack-core >= 0.0.1"]
+}
