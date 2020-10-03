@@ -26,7 +26,7 @@ No chemical science required for robotic technologies because lubricant can be p
 Steam is used for cracking.
 
 ### Solid fuel acceleration
-spice-rack-oil-change-solid-fuel=Solid fuel acceleration is 140%
+Solid fuel acceleration is 140%
 
 ## The Spice Rack - Pollution
 Change effectivity modules and furnaces/drills to increase difficulty due to pollution
