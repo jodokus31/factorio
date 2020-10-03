@@ -23,7 +23,7 @@ Change basic oil processing to output gas and heavy oil. Sulfur comes from heavy
 Basic oil processing produces extra heavy oil.\
 Sulfur is made from heavy oil.\
 No chemical science required for robotic technologies because lubricant can be produced.\
-Steam is used for cracking.\
+Steam is used for cracking.
 
 ### Solid fuel acceleration
 Solid fuel acceleration is 140%
