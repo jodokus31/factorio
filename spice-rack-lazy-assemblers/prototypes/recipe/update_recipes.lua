@@ -6,71 +6,78 @@ if settingsutil.get_startup_setting("crafting-limitation-mode") ~= "disabled" th
 
     local recipe_categories = {
         ["assembler2"] =
-            {
-                "assembling-machine-2",
-                "assembling-machine-3",
-                "electric-furnace",
+        {
+            "assembling-machine-2",
+            "assembling-machine-3",
+            "electric-furnace",
 
-                "oil-refinery",
-                "pumpjack", 
-                "chemical-plant",
-                
-                "centrifuge",
-                "nuclear-reactor",
-                "steam-turbine",
-                "heat-exchanger",
-                
-                "chemical-science-pack",
-                "production-science-pack",
-                "utility-science-pack",
-
-                "beacon",
-                "productivity-module",
-                "speed-module",
-                "effectivity-module",
-            },
+            "pumpjack", 
+            "chemical-plant",
             
-        ["nohandcraft_assembler2"] =
-            {
-                "low-density-structure",
-                "flying-robot-frame",
-                "advanced-circuit",
-
-                "productivity-module-2",
-                "speed-module-2",
-                "effectivity-module-2",
+            "steam-turbine",
+            "heat-exchanger",
             
-                "uranium-fuel-cell",
-                "uranium-rounds-magazine",
-                "uranium-cannon-shell",
-                
-                "car",
-                "tank",
-                "locomotive",
-                "cargo-wagon",
-                "fluid-wagon",
+            "chemical-science-pack",
+            "production-science-pack",
+            "utility-science-pack",
 
-                "artillery-turret",
-                "artillery-wagon",
-                "artillery-shell",
-            },
+            "beacon",
+            "productivity-module",
+            "speed-module",
+            "effectivity-module",
+        },
+            
+        ["assembler2_nohandcraft"] =
+        {
+            "low-density-structure",
+            "flying-robot-frame",
+            "advanced-circuit",
 
-        ["nohandcraft_assembler3"] =
-            {
-                "productivity-module-3",
-                "speed-module-3",
-                "effectivity-module-3",
+            "productivity-module-2",
+            "speed-module-2",
+            "effectivity-module-2",
+        
+            "uranium-fuel-cell",
+            "uranium-rounds-magazine",
+            "uranium-cannon-shell",
+            
+            "car",
+            "tank",
+            "locomotive",
+            "cargo-wagon",
+            "fluid-wagon",
 
-                "rocket-control-unit",
+            "artillery-turret",
+            "artillery-wagon",
+            "artillery-shell",
+        },
 
-                "rocket-silo",
-                "satellite",
+        ["assembler3"] =
+        {
+            "oil-refinery",
+            "centrifuge",
+            "nuclear-reactor",
 
-                "spidertron",
-                "spidertron-remote",
-                "atomic-bomb",
-            },
-        }
+            "satellite",
+
+            "spidertron-remote",
+        },
+
+        ["assembler3_nohandcraft"] =
+        {
+            "productivity-module-3",
+            "speed-module-3",
+            "effectivity-module-3",
+
+            "rocket-control-unit",
+
+            "rocket-silo",
+            
+            "spidertron",
+            
+            "atomic-bomb",
+        },
+    }
 
     for _, recipe in pairs(data.raw.recipe) do
         -- only overwrite nil or category "crafting"

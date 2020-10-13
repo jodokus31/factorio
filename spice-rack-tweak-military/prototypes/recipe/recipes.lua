@@ -14,8 +14,8 @@ if settingsutil.get_startup_setting("longrange-turret") then
             {
                 {"steel-plate", 10},
                 {"iron-gear-wheel", 20},
-                {"copper-plate", 20},
-                {"stone-brick", 12}
+                {"copper-plate", 10},
+                {"concrete", 24}
             },
             result = "gun-turret-long-range"
         }

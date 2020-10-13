@@ -2,23 +2,25 @@ local settingsutil = require('__spice-rack-core__/util/settingsutil')
 local tableutil = require('__spice-rack-core__/util/tableutil')
 
 ------ >> Oil Change
-if settingsutil.get_startup_setting("oil-change") then
+if settingsutil.get_startup_setting("oil-change") ~= "disabled" then
+    if settingsutil.get_startup_setting("oil-change") == "basic oil and research" then
     
-    local no_chemical_science_techs = {"lubricant", "electric-engine", "lubricant", "robotics", "construction-robotics", "logistic-robotics"}
+        local no_chemical_science_techs = {"lubricant", "electric-engine", "lubricant", "robotics", "construction-robotics", "logistic-robotics"}
 
-    for _, techname in pairs (no_chemical_science_techs) do
+        for _, techname in pairs (no_chemical_science_techs) do
+            tableutil.remove(
+                data.raw.technology[techname].unit.ingredients, 
+                function (i) return i and i[1] == "chemical-science-pack" end)
+        end
+        
+        data.raw.technology['robotics'].unit.count = 150
+
         tableutil.remove(
-            data.raw.technology[techname].unit.ingredients, 
-            function (i) return i and i[1] == "chemical-science-pack" end)
+            data.raw.technology['lubricant'].prerequisites,
+            function (t) return t == "advanced-oil-processing" end)
+
+        tableutil.add(data.raw.technology['lubricant'].prerequisites, "oil-processing", true)
     end
-    
-    data.raw.technology['robotics'].unit.count = 150
-
-    tableutil.remove(
-        data.raw.technology['lubricant'].prerequisites,
-        function (t) return t == "advanced-oil-processing" end)
-
-    tableutil.add(data.raw.technology['lubricant'].prerequisites, "oil-processing")
 
     local soildfueleffect = tableutil.remove(
         data.raw.technology['advanced-oil-processing'].effects, 

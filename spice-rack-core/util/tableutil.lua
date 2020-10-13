@@ -1,7 +1,20 @@
 local TableUtil = {}
 
-function TableUtil.add(tbl, value)
-    table.insert(tbl, value)
+function TableUtil.add(tbl, value, check_if_exists)
+    local index = nil
+    if check_if_exists then
+        if type(value) ~= "table" then
+            index, _ = TableUtil.find(tbl, 
+                function(v) return v == value end)
+        else
+            index, _ = TableUtil.find(tbl, 
+                function(v) return type(v) == "table" and util.table.compare(v, value) end)
+        end
+    end
+
+    if not index then
+        table.insert(tbl, value)
+    end
 end
 
 function TableUtil.remove(tbl, predicate)
@@ -14,7 +27,7 @@ end
 
 function TableUtil.find(tbl, predicate)
     if not tbl or not predicate then
-        return nil
+        return nil, nil
     end
 
     for index, value in pairs(tbl) do

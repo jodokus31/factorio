@@ -19,17 +19,16 @@ if settingsutil.get_startup_setting("longrange-turret") then
                 {
                     type = "turret-attack",
                     turret_id = "gun-turret-long-range",
-                    modifier = 1.2
+                    modifier = 0.25
                 }
             },
-            prerequisites = {"turrets", "chemical-science-pack", "military-3"},
+            prerequisites = {"turrets", "military-3", "concrete"},
             unit =
             {
-                count = 150,
+                count = 250,
                 ingredients = { 
                     {"automation-science-pack", 1}, 
                     {"logistic-science-pack", 1}, 
-                    {"chemical-science-pack", 1}, 
                     {"military-science-pack", 1} },
                 time = 30
             },
@@ -37,25 +36,37 @@ if settingsutil.get_startup_setting("longrange-turret") then
         }
     })
 
-    table.insert(data.raw.technology['physical-projectile-damage-5'].effects, 
+    table.insert(data.raw.technology['physical-projectile-damage-3'].effects, 
     {
         type = "turret-attack",
         turret_id = "gun-turret-long-range",
-        modifier = 0.2
+        modifier = 0.3
     })
-
-    table.insert(data.raw.technology['physical-projectile-damage-6'].effects, 
+    table.insert(data.raw.technology['physical-projectile-damage-4'].effects, 
+    {
+        type = "turret-attack",
+        turret_id = "gun-turret-long-range",
+        modifier = 0.35
+    })
+    table.insert(data.raw.technology['physical-projectile-damage-5'].effects, 
     {
         type = "turret-attack",
         turret_id = "gun-turret-long-range",
         modifier = 0.4
     })
 
+    table.insert(data.raw.technology['physical-projectile-damage-6'].effects, 
+    {
+        type = "turret-attack",
+        turret_id = "gun-turret-long-range",
+        modifier = 0.5
+    })
+
     table.insert(data.raw.technology['physical-projectile-damage-7'].effects, 
     {
         type = "turret-attack",
         turret_id = "gun-turret-long-range",
-        modifier = 0.7
+        modifier = 0.75
     })
 end
 ------ << Long Range Turret

@@ -18,32 +18,26 @@ if settingsutil.get_startup_setting("lab-change") then
 end
 ------ << Lab
 
------- >> Production Science
--- if get_startup_setting("production-science-pack") then
---     -- {
---     --     type = "recipe",
---     --     name = "production-science-pack",
---     --     enabled = false,
---     --     energy_required = 21,
---     --     ingredients =
---     --     {
---     --      {"electric-furnace", 1},
---     --      {"productivity-module", 1},
---     --      {"rail", 30}
---     --     },
---     --     result_count = 3,
---     --     result = "production-science-pack"
---     -- }
+------ >> Furnace & Drill Progression
 
---     data.raw.recipe['production-science-pack'].ingredients = {
---         {"electric-furnace", 1},
---         {"productivity-module", 1},
---         {"rail", 30},
---         {"small-lamp", 3}
---     }
--- end
+if settingsutil.get_startup_setting("furnace-progression") then
+    --     name = "stone-furnace",
+    --     ingredients = {{"stone", 5}},
 
------- << Production Science
+    data.raw.recipe['stone-furnace'].ingredients = { {"stone-brick", 5} }
+
+    --     name = "steel-furnace",
+    --     ingredients = {{"steel-plate", 6}, {"stone-brick", 10}},
+
+    data.raw.recipe['steel-furnace'].ingredients = { {"stone-furnace", 1}, {"steel-plate", 8}}
+
+    --     name = "electric-furnace",
+    --     ingredients = {{"steel-plate", 10}, {"advanced-circuit", 5}, {"stone-brick", 10}},
+
+    data.raw.recipe['electric-furnace'].ingredients = { {"steel-furnace", 1}, {"concrete", 10}, {"advanced-circuit", 4}}
+end
+
+------ << Furnace & Drill Progression
 
 ------ >> Utility Science
 if settingsutil.get_startup_setting("utility-science-pack") then
@@ -62,7 +56,7 @@ if settingsutil.get_startup_setting("utility-science-pack") then
     --     result = "utility-science-pack"
     -- }
 
-    tableutil.add(data.raw.recipe['utility-science-pack'].ingredients, {"uranium-238", 5} )
+    tableutil.add(data.raw.recipe['utility-science-pack'].ingredients, {"uranium-238", 2} )
 end
 
 ------ << Utility Science

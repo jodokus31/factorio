@@ -2,7 +2,7 @@ local settingsutil = require('__spice-rack-core__/util/settingsutil')
 local tableutil = require('__spice-rack-core__/util/tableutil')
 
 ------ >> Oil Change
-if settingsutil.get_startup_setting("oil-change") then
+if settingsutil.get_startup_setting("oil-change") ~= "disabled" then
 
     data.raw.recipe['basic-oil-processing'].results = {
         {type="fluid", name="heavy-oil", amount=25, fluidbox_index = 1},

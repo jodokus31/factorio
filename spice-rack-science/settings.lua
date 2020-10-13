@@ -18,7 +18,7 @@ data:extend(
     },
     {
         type = "bool-setting",
-        name = "spice-rack-rocket-silo",
+        name = "spice-rack-furnace-progression",
         order = "c",
         setting_type = "startup",
         default_value = true,
@@ -26,9 +26,9 @@ data:extend(
     },
     {
         type = "bool-setting",
-        name = "spice-rack-runtime-add-lamps",
-        order = "a",
-        setting_type = "runtime-global",
+        name = "spice-rack-rocket-silo",
+        order = "d",
+        setting_type = "startup",
         default_value = true,
         per_user = false,
     },

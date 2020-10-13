@@ -10,7 +10,7 @@ data:extend(
     },
     {
         type = "bool-setting",
-        name = "spice-rack-furnace-drill-change",
+        name = "spice-rack-mining-drill-module-slots",
         order = "b",
         setting_type = "startup",
         default_value = true,
@@ -18,7 +18,7 @@ data:extend(
     },
     {
         type = "bool-setting",
-        name = "spice-rack-furnace-progression",
+        name = "spice-rack-furnace-drill-change",
         order = "c",
         setting_type = "startup",
         default_value = true,

@@ -45,7 +45,9 @@ if settingsutil.get_startup_setting("change-military-research") then
 
     data.raw.technology['military-3'].unit.count = 200
     
-    tableutil.add(data.raw.technology['tanks'].prerequisites, "chemical-science-pack")
+    tableutil.add(data.raw.technology['tanks'].prerequisites, "chemical-science-pack", true)
+
+    tableutil.add(data.raw.technology['stronger-explosives-1'].prerequisites, "military-science-pack", true)
     
 end
 ------ << Military Rebalance
@@ -80,8 +82,15 @@ end
 
 ------ >> Flamethrower
 
-if settingsutil.get_startup_setting("flamethrower-debuff") then
+if settingsutil.get_startup_setting("flamethrower-change") then
     data.raw.technology['flamethrower'].unit.count = 200
 end
 
 ------ << Flamethrower
+
+
+------ >> Tank
+if settingsutil.get_startup_setting("tank-change") then
+    tableutil.add(data.raw.technology['tanks'].prerequisites, "electric-engine", true)
+end
+------ << Tank

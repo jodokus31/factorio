@@ -10,11 +10,15 @@ if settingsutil.get_startup_setting("crafting-limitation-mode") ~= "disabled" th
         },
         {
             type = "recipe-category",
-            name = "nohandcraft_assembler2"
+            name = "assembler2_nohandcraft"
         },
         {
             type = "recipe-category",
-            name = "nohandcraft_assembler3"
+            name = "assembler3"
+        },
+        {
+            type = "recipe-category",
+            name = "assembler3_nohandcraft"
         },
     })
 end

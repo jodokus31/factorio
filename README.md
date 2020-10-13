@@ -10,8 +10,8 @@ Crafting limitations for lower tier assemblers to make progression more interest
 ### Crafting Limitation
 Select crafting limitation:\
 "disabled" - off, vanilla limitations\
-"assemblers only" - Lower tiers of assemblers cannot craft several midgame and advanced recipes\
-"assemblers and player" - Additionally limit handcrafting of player for several midgame and advanced recipes
+"assembler only" - Lower tiers of assemblers cannot craft several midgame and advanced recipes\
+"assembler and character" - Additionally limit handcrafting of player for several midgame and advanced recipes
 
 ### Lazy bastard marathon
 The player receives some intermediates(gears, circuits, pipes) on map start to have a chance to achieve lazy bastard with marathon settings.

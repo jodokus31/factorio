@@ -26,7 +26,7 @@ data:extend(
     },
     {
         type = "bool-setting",
-        name = "spice-rack-flamethrower-debuff",
+        name = "spice-rack-flamethrower-change",
         order = "d",
         setting_type = "startup",
         default_value = true,
@@ -34,7 +34,7 @@ data:extend(
     },
     {
         type = "bool-setting",
-        name = "spice-rack-laser-drain",
+        name = "spice-rack-laser-change",
         order = "e",
         setting_type = "startup",
         default_value = true,
@@ -42,7 +42,7 @@ data:extend(
     },
     {
         type = "bool-setting",
-        name = "spice-rack-more-grenade-base-damage",
+        name = "spice-rack-grenade-change",
         order = "f",
         setting_type = "startup",
         default_value = true,
@@ -50,8 +50,24 @@ data:extend(
     },
     {
         type = "bool-setting",
-        name = "spice-rack-change-landmine-cost",
+        name = "spice-rack-landmine-change",
         order = "g",
+        setting_type = "startup",
+        default_value = true,
+        per_user = false,
+    },
+    {
+        type = "bool-setting",
+        name = "spice-rack-spawner-change",
+        order = "h",
+        setting_type = "startup",
+        default_value = true,
+        per_user = false,
+    },
+    {
+        type = "bool-setting",
+        name = "spice-rack-tank-change",
+        order = "i",
         setting_type = "startup",
         default_value = true,
         per_user = false,
