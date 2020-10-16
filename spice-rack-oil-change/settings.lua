@@ -11,8 +11,16 @@ data:extend(
     },
     {
         type = "bool-setting",
-        name = "spice-rack-oil-change-solid-fuel",
+        name = "spice-rack-oil-change-steam-cracking",
         order = "b",
+        setting_type = "startup",
+        default_value = true,
+        per_user = false,
+    },
+    {
+        type = "bool-setting",
+        name = "spice-rack-oil-change-solid-fuel",
+        order = "c",
         setting_type = "startup",
         default_value = true,
         per_user = false,

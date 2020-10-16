@@ -101,7 +101,7 @@ end
 ------ << Laser Turret
 
 ------ >> Grenade
-if settingsutil.get_startup_setting("grenade-change") then
+-- if settingsutil.get_startup_setting("grenade-change") then
 
     -- type = "projectile",
     -- name = "grenade",
@@ -132,23 +132,38 @@ if settingsutil.get_startup_setting("grenade-change") then
     --     }
     -- },
 
-    local action_index, action = tableutil.find(
-        data.raw['projectile']['grenade'].action,
-        function (a) return a and a.type == "area" end)
+    -- local action_index, action = tableutil.find(
+    --     data.raw['projectile']['grenade'].action,
+    --     function (a) return a and a.type == "area" end)
 
-    if action then
+    -- if action then
         
-        local effect_index, effect = tableutil.find(
-            action.action_delivery.target_effects,
-            function (e) return e and e.type == "damage" end)
+    --     action.radius = 7.5
 
-        if effect then
-            effect.damage.amount = 40
-        end
-    end
+    --     -- local effect_index, effect = tableutil.find(
+    --     --     action.action_delivery.target_effects,
+    --     --     function (e) return e and e.type == "damage" end)
 
+    --     -- if effect then
+    --     --     effect.damage.amount = 40
+    --     -- end
+    -- end
 
-end
+    -- type = "capsule",
+    -- name = "grenade",
+    -- capsule_action =
+    -- {
+    --   type = "throw",
+    --   attack_parameters =
+    --   {
+    --     type = "projectile",
+    --     ammo_category = "grenade",
+    --     cooldown = 30,
+    --     projectile_creation_distance = 0.6,
+    --     range = 15,
+
+    -- data.raw['capsule']['grenade'].capsule_action.attack_parameters.range = 16
+-- end
 ------ << Grenade
 
 ------ >> Landmine
@@ -298,8 +313,14 @@ if settingsutil.get_startup_setting("tank-change") then
     data.raw['car']['tank'].max_health = 3000
     data.raw['car']['tank'].rotation_speed = 0.004
     data.raw['car']['tank'].weight = 25000
-    data.raw['car']['tank'].consumption = "1000kW"
-    data.raw['car']['tank'].braking_power = "650kW"
+    data.raw['car']['tank'].consumption = "900kW"
+    data.raw['car']['tank'].braking_power = "600kW"
+
+end
+------ << Tank
+
+------ >> Repair pack
+if settingsutil.get_startup_setting("repair-change") then
 
     -- type = "repair-tool",
     -- name = "repair-pack",
@@ -311,4 +332,161 @@ if settingsutil.get_startup_setting("tank-change") then
     data.raw['repair-tool']['repair-pack'].durability = 500
     data.raw['repair-tool']['repair-pack'].stack_size = 50
 end
------- << Tank
+------ << Repair pack
+
+------ >> Car
+if settingsutil.get_startup_setting("car-change") then
+    -- type = "car",
+    -- name = "car",
+    -- max_health = 450,
+    -- weight = 700,
+    -- resistances =
+    -- {
+    --   {
+    --     type = "fire",
+    --     percent = 50
+    --   },
+    --   {
+    --     type = "impact",
+    --     percent = 30,
+    --     decrease = 50
+    --   },
+    --   {
+    --     type = "acid",
+    --     percent = 20
+    --   },
+    -- },
+    data.raw['car']['car'].max_health = 600
+    tableutil.add(data.raw['car']['car'].resistances,
+        {
+            type = "physical",
+            decrease = 3,
+            percent = 30
+        })
+end
+------ << Car
+
+------ >> Shotgun
+if settingsutil.get_startup_setting("shotgun-change") then
+    -- type = "ammo",
+    -- name = "shotgun-shell",
+    -- ammo_type =
+    -- {
+    --   category = "shotgun-shell",
+    --   target_type = "direction",
+    --   clamp_position = true,
+    --   action =
+    --   {
+    --     {
+    --       type = "direct",
+    --       action_delivery =
+    --       {
+    --         type = "instant",
+    --         source_effects =
+    --         {
+    --           {
+    --             type = "create-explosion",
+    --             entity_name = "explosion-gunshot"
+    --           }
+    --         }
+    --       }
+    --     },
+    --     {
+    --       type = "direct",
+    --       repeat_count = 12,
+    --       action_delivery =
+    --       {
+    --         type = "projectile",
+    --         projectile = "shotgun-pellet",
+    --         starting_speed = 1,
+    --         starting_speed_deviation = 0.1,
+    --         direction_deviation = 0.3,
+    --         range_deviation = 0.3,
+    --         max_range = 15
+    --       }
+    --     }
+    --   }
+    -- },
+
+    -- type = "projectile",
+    -- name = "shotgun-pellet",
+    -- action =
+    -- {
+    --   type = "direct",
+    --   action_delivery =
+    --   {
+    --     type = "instant",
+    --     target_effects =
+    --     {
+    --       type = "damage",
+    --       damage = {amount = 5, type = "physical"}
+    --     }
+    --   }
+    -- },
+
+    local _, shell_action = tableutil.find(data.raw['ammo']['shotgun-shell'].ammo_type.action,
+        function (a) 
+            return a and a.type == "direct" and 
+                    a.action_delivery and a.action_delivery.type == "projectile" 
+            end
+        )
+
+    -- 60
+    if shell_action then
+        shell_action.repeat_count = 14
+        shell_action.action_delivery.direction_deviation = 0.5
+    end
+
+    data.raw['projectile']['shotgun-pellet'].action.action_delivery.target_effects.damage.amount = 6.25
+
+    local _, piercing_shell_action = tableutil.find(data.raw['ammo']['piercing-shotgun-shell'].ammo_type.action,
+        function (a) 
+            return a and a.type == "direct" and 
+                    a.action_delivery and a.action_delivery.type == "projectile" 
+            end
+        )
+    -- 128
+    if piercing_shell_action then
+        piercing_shell_action.repeat_count = 18
+        piercing_shell_action.action_delivery.direction_deviation = 0.4
+    end
+
+    data.raw['projectile']['piercing-shotgun-pellet'].action.action_delivery.target_effects.damage.amount = 10
+
+
+    -- type = "gun",
+    -- name = "shotgun",
+    -- attack_parameters =
+    -- {
+    --   type = "projectile",
+    --   ammo_category = "shotgun-shell",
+    --   cooldown = 60,
+    --   movement_slow_down_factor = 0.6,
+    --   projectile_creation_distance = 1.125,
+    --   range = 15,
+    --   min_range = 1,
+    --   sound = sounds.shotgun
+    -- }
+
+    data.raw['gun']['shotgun'].attack_parameters.movement_slow_down_factor = 0.5
+    data.raw['gun']['shotgun'].attack_parameters.projectile_creation_distance = 0.3
+
+    -- type = "gun",
+    -- name = "combat-shotgun",
+    -- attack_parameters =
+    -- {
+    --   type = "projectile",
+    --   ammo_category = "shotgun-shell",
+    --   cooldown = 30,
+    --   movement_slow_down_factor = 0.5,
+    --   damage_modifier = 1.2,
+    --   projectile_creation_distance = 1.125,
+    --   range = 15,
+    --   sound = sounds.shotgun
+    -- },
+
+    data.raw['gun']['combat-shotgun'].attack_parameters.movement_slow_down_factor = 0.4
+    data.raw['gun']['combat-shotgun'].attack_parameters.projectile_creation_distance = 0.3
+
+end
+------ << Shotgun

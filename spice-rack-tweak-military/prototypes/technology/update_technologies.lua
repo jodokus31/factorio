@@ -1,7 +1,7 @@
 local settingsutil = require('__spice-rack-core__/util/settingsutil')
 local tableutil = require('__spice-rack-core__/util/tableutil')
 
------- >> Military Rebalance
+------ >> Military Research
 if settingsutil.get_startup_setting("change-military-research") then
     -- name = "physical-projectile-damage-3",
     -- prerequisites = {"physical-projectile-damage-2"},
@@ -47,10 +47,12 @@ if settingsutil.get_startup_setting("change-military-research") then
     
     tableutil.add(data.raw.technology['tanks'].prerequisites, "chemical-science-pack", true)
 
-    tableutil.add(data.raw.technology['stronger-explosives-1'].prerequisites, "military-science-pack", true)
+    -- tableutil.add(data.raw.technology['stronger-explosives-1'].prerequisites, "military-science-pack", true)
+    -- tableutil.add(data.raw.technology['stronger-explosives-1'].unit.ingredients, {"military-science-pack", 1}, true)
+    -- data.raw.technology['stronger-explosives-1'].unit.count = 75
     
 end
------- << Military Rebalance
+------ << Military Research
 
 ------ >> Combat Robot Count
 if settingsutil.get_startup_setting("change-robot-follower-count") then
@@ -87,10 +89,3 @@ if settingsutil.get_startup_setting("flamethrower-change") then
 end
 
 ------ << Flamethrower
-
-
------- >> Tank
-if settingsutil.get_startup_setting("tank-change") then
-    tableutil.add(data.raw.technology['tanks'].prerequisites, "electric-engine", true)
-end
------- << Tank

@@ -40,14 +40,14 @@ data:extend(
         default_value = true,
         per_user = false,
     },
-    {
-        type = "bool-setting",
-        name = "spice-rack-grenade-change",
-        order = "f",
-        setting_type = "startup",
-        default_value = true,
-        per_user = false,
-    },
+    -- {
+    --     type = "bool-setting",
+    --     name = "spice-rack-grenade-change",
+    --     order = "f",
+    --     setting_type = "startup",
+    --     default_value = true,
+    --     per_user = false,
+    -- },
     {
         type = "bool-setting",
         name = "spice-rack-landmine-change",
@@ -72,4 +72,30 @@ data:extend(
         default_value = true,
         per_user = false,
     },
+    {
+        type = "bool-setting",
+        name = "spice-rack-car-change",
+        order = "j",
+        setting_type = "startup",
+        default_value = true,
+        per_user = false,
+    },
+    {
+        type = "bool-setting",
+        name = "spice-rack-repair-change",
+        order = "k",
+        setting_type = "startup",
+        default_value = true,
+        per_user = false,
+    },
+    {
+        type = "bool-setting",
+        name = "spice-rack-shotgun-change",
+        order = "k",
+        setting_type = "startup",
+        default_value = true,
+        per_user = false,
+    },
+
+    
 })

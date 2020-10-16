@@ -14,7 +14,7 @@ if settingsutil.get_startup_setting("landmine-change") then
     --     },
     -- },
 
-    data.raw.recipe['land-mine'].ingredients = { {"steel-plate", 2}, {"explosives", 5} }
+    data.raw.recipe['land-mine'].ingredients = { {"steel-plate", 2}, {"explosives", 4} }
 end
 
 ------ << Landmine
@@ -32,24 +32,28 @@ if settingsutil.get_startup_setting("tank-change") then
     -- },
 
     data.raw.recipe['tank'].ingredients = {
-        {"electric-engine-unit", 32},
+        {"engine-unit", 96},
         {"steel-plate", 100},
-        {"iron-gear-wheel", 30},
+        {"iron-gear-wheel", 100},
         {"advanced-circuit", 50}
     }
 
-        -- type = "recipe",
-        -- name = "repair-pack",
-        -- ingredients =
-        -- {
-        --   {"electronic-circuit", 2},
-        --   {"iron-gear-wheel", 2}
-        -- },
+end
+------ << Tank
+
+------ >> Repair pack
+if settingsutil.get_startup_setting("repair-change") then
+    -- type = "recipe",
+    -- name = "repair-pack",
+    -- ingredients =
+    -- {
+    --   {"electronic-circuit", 2},
+    --   {"iron-gear-wheel", 2}
+    -- },
 
     data.raw.recipe['repair-pack'].ingredients = {
         {"electronic-circuit", 5},
         {"iron-gear-wheel", 5}
     }
-
 end
------- << Tank
+------ << Repair pack

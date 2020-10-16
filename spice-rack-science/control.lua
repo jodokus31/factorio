@@ -14,6 +14,6 @@ end)
 
 function on_player_creation(player)
     if settingsutil.get_startup_setting("lab-change") then
-        player.insert { name = "small-lamp", count = 10}
+        player.insert { name = "small-lamp", count = 20}
     end
 end

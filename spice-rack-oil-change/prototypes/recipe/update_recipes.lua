@@ -14,6 +14,16 @@ if settingsutil.get_startup_setting("oil-change") ~= "disabled" then
         {type="fluid", name="heavy-oil", amount = 10}
     }
 
+    data.raw.recipe['solid-fuel-from-petroleum-gas'].ingredients = 
+    {
+        {type="fluid", name="petroleum-gas", amount=30}
+    }
+end
+------ << Oil Change
+
+------ >> Steam cracking
+if settingsutil.get_startup_setting("oil-change-steam-cracking") then
+
     data.raw.recipe['heavy-oil-cracking'].ingredients = 
     {
         {type="fluid", name="steam", amount=30},
@@ -25,10 +35,5 @@ if settingsutil.get_startup_setting("oil-change") ~= "disabled" then
         {type="fluid", name="steam", amount=30},
         {type="fluid", name="light-oil", amount=30}
     }
-
-    data.raw.recipe['solid-fuel-from-petroleum-gas'].ingredients = 
-    {
-        {type="fluid", name="petroleum-gas", amount=30}
-    }
 end
------- << Oil Change
+------ << Steam cracking
