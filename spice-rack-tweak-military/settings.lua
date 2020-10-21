@@ -10,7 +10,7 @@ data:extend(
     },
     {
         type = "bool-setting",
-        name = "spice-rack-change-military-research",
+        name = "spice-rack-change-military3-research",
         order = "b",
         setting_type = "startup",
         default_value = true,
@@ -18,7 +18,7 @@ data:extend(
     },
     {
         type = "bool-setting",
-        name = "spice-rack-change-robot-follower-count",
+        name = "spice-rack-change-military-research",
         order = "c",
         setting_type = "startup",
         default_value = true,
@@ -26,7 +26,7 @@ data:extend(
     },
     {
         type = "bool-setting",
-        name = "spice-rack-flamethrower-change",
+        name = "spice-rack-shotgun-change",
         order = "d",
         setting_type = "startup",
         default_value = true,
@@ -34,23 +34,23 @@ data:extend(
     },
     {
         type = "bool-setting",
-        name = "spice-rack-laser-change",
+        name = "spice-rack-change-follower-robot-count",
         order = "e",
         setting_type = "startup",
         default_value = true,
         per_user = false,
     },
-    -- {
-    --     type = "bool-setting",
-    --     name = "spice-rack-grenade-change",
-    --     order = "f",
-    --     setting_type = "startup",
-    --     default_value = true,
-    --     per_user = false,
-    -- },
     {
         type = "bool-setting",
-        name = "spice-rack-landmine-change",
+        name = "spice-rack-flamethrower-change",
+        order = "f",
+        setting_type = "startup",
+        default_value = true,
+        per_user = false,
+    },
+    {
+        type = "bool-setting",
+        name = "spice-rack-laser-change",
         order = "g",
         setting_type = "startup",
         default_value = true,
@@ -58,7 +58,7 @@ data:extend(
     },
     {
         type = "bool-setting",
-        name = "spice-rack-spawner-change",
+        name = "spice-rack-landmine-change",
         order = "h",
         setting_type = "startup",
         default_value = true,
@@ -66,7 +66,7 @@ data:extend(
     },
     {
         type = "bool-setting",
-        name = "spice-rack-tank-change",
+        name = "spice-rack-spawner-change",
         order = "i",
         setting_type = "startup",
         default_value = true,
@@ -74,7 +74,7 @@ data:extend(
     },
     {
         type = "bool-setting",
-        name = "spice-rack-car-change",
+        name = "spice-rack-tank-change",
         order = "j",
         setting_type = "startup",
         default_value = true,
@@ -82,7 +82,7 @@ data:extend(
     },
     {
         type = "bool-setting",
-        name = "spice-rack-repair-change",
+        name = "spice-rack-car-change",
         order = "k",
         setting_type = "startup",
         default_value = true,
@@ -90,12 +90,10 @@ data:extend(
     },
     {
         type = "bool-setting",
-        name = "spice-rack-shotgun-change",
-        order = "k",
+        name = "spice-rack-repair-pack-change",
+        order = "l",
         setting_type = "startup",
         default_value = true,
         per_user = false,
     },
-
-    
 })

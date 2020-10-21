@@ -80,7 +80,7 @@ if settingsutil.get_startup_setting("crafting-limitation-mode") ~= "disabled" th
     }
 
     for _, recipe in pairs(data.raw.recipe) do
-        -- only overwrite nil or category "crafting"
+        -- only overwrite category empty or "crafting"
         if recipe and (recipe.category == nil or recipe.category == "crafting") then
 
             for category, recipe_names in pairs(recipe_categories) do

@@ -27,7 +27,7 @@ if settingsutil.get_startup_setting("flamethrower-change") then
         end
     end
 
-    data.raw['fluid-turret']['flamethrower-turret'].attack_parameters.fluid_consumption = 0.8
+    data.raw['fluid-turret']['flamethrower-turret'].attack_parameters.fluid_consumption = 0.6
 
     -- type = "stream",
     -- name = "flamethrower-fire-stream",
@@ -38,14 +38,14 @@ if settingsutil.get_startup_setting("flamethrower-change") then
 
     if action then
         
-        action.radius = 1.8  -- 2.5 
+        action.radius = 1.8  -- original 2.5 
 
         local effect_index, effect = tableutil.find(
             action.action_delivery.target_effects,
             function (e) return e and e.type == "damage" end)
 
         if effect then
-            effect.damage.amount = 1.5 -- 3 
+            effect.damage.amount = 1.5 -- original 3 == 90
         end
     end
 
@@ -78,59 +78,17 @@ if settingsutil.get_startup_setting("laser-change") then
 
     -- energy_source =
     --     {
-    --       type = "electric",
-    --       buffer_capacity = "801kJ",
-    --       input_flow_limit = "9600kW",
+    --       ...
     --       drain = "24kW",
-    --       usage_priority = "primary-input"
+    --       ...
     --     },
-
-    -- attack_parameters =
-    -- {
-    --   type = "beam",
-    --   cooldown = 40,
-    --   range = 24,
-    --   source_direction_count = 64,
-    --   source_offset = {0, -3.423489 / 4},
-    --   damage_modifier = 2,
-    -- }
-
-    data.raw['electric-turret']['laser-turret'].energy_source.drain = "96kW"
+    data.raw['electric-turret']['laser-turret'].energy_source.drain = "60kW"
     
 end
 ------ << Laser Turret
 
 ------ >> Grenade
 -- if settingsutil.get_startup_setting("grenade-change") then
-
-    -- type = "projectile",
-    -- name = "grenade",
-    -- flags = {"not-on-map"},
-    -- acceleration = 0.005,
-    -- action =
-    -- {
-    --     {...
-    --     },
-    --     {
-    --         type = "area",
-    --         radius = 6.5,
-    --         action_delivery =
-    --         {
-    --             type = "instant",
-    --             target_effects =
-    --             {
-    --                     {
-    --                         type = "damage",
-    --                         damage = {amount = 35, type = "explosion"}
-    --                     },
-    --                     {
-    --                         type = "create-entity",
-    --                         entity_name = "explosion"
-    --                     }
-    --             }
-    --         }
-    --     }
-    -- },
 
     -- local action_index, action = tableutil.find(
     --     data.raw['projectile']['grenade'].action,
@@ -149,19 +107,6 @@ end
     --     -- end
     -- end
 
-    -- type = "capsule",
-    -- name = "grenade",
-    -- capsule_action =
-    -- {
-    --   type = "throw",
-    --   attack_parameters =
-    --   {
-    --     type = "projectile",
-    --     ammo_category = "grenade",
-    --     cooldown = 30,
-    --     projectile_creation_distance = 0.6,
-    --     range = 15,
-
     -- data.raw['capsule']['grenade'].capsule_action.attack_parameters.range = 16
 -- end
 ------ << Grenade
@@ -169,52 +114,6 @@ end
 ------ >> Landmine
 -- if settingsutil.get_startup_setting("landmine-change") then
 
-    -- type = "land-mine",
-    -- name = "land-mine",
-    -- action =
-    -- {
-    --   type = "direct",
-    --   action_delivery =
-    --   {
-    --     type = "instant",
-    --     source_effects =
-    --     {
-    --       {
-    --         type = "nested-result",
-    --         affects_target = true,
-    --         action =
-    --         {
-    --           type = "area",
-    --           radius = 6,
-    --           force = "enemy",
-    --           action_delivery =
-    --           {
-    --             type = "instant",
-    --             target_effects =
-    --             {
-    --               {
-    --                 type = "damage",
-    --                 damage = { amount = 250, type = "explosion"}
-    --               },
-    --               {
-    --                 type = "create-sticker",
-    --                 sticker = "stun-sticker"
-    --               }
-    --             }
-    --           }
-    --         }
-    --       },
-    --       {
-    --         type = "create-entity",
-    --         entity_name = "explosion"
-    --       },
-    --       {
-    --         type = "damage",
-    --         damage = { amount = 1000, type = "explosion"}
-    --       },
-    --     }
-    --   }
-    -- }
 -- end
 ------ << Landmine
 
@@ -224,51 +123,14 @@ if settingsutil.get_startup_setting("spawner-change") then
     -- type = "unit-spawner",
     -- name = "biter-spawner",
     -- max_health = 350,
-    -- resistances =
-    --     {
-    --       {
-    --         type = "physical",
-    --         decrease = 2,
-    --         percent = 15
-    --       },
-    --       {
-    --         type = "explosion",
-    --         decrease = 5,
-    --         percent = 15
-    --       },
-    --       {
-    --         type = "fire",
-    --         decrease = 3,
-    --         percent = 60
-    --       }
-    --     },
     -- healing_per_tick = 0.02,
-
 
     -- type = "unit-spawner",
     -- name = "spitter-spawner",
     -- max_health = 350,
-    -- resistances =
-    -- {
-    --   {
-    --     type = "physical",
-    --     decrease = 2,
-    --     percent = 15
-    --   },
-    --   {
-    --     type = "explosion",
-    --     decrease = 5,
-    --     percent = 15
-    --   },
-    --   {
-    --     type = "fire",
-    --     decrease = 3,
-    --     percent = 60
-    --   }
-    -- }
     -- healing_per_tick = 0.02,
 
-    data.raw['unit-spawner']['biter-spawner'].max_health = 500
+    data.raw['unit-spawner']['biter-spawner'].max_health = 600
     data.raw['unit-spawner']['biter-spawner'].healing_per_tick = 0.1
     tableutil.add(data.raw['unit-spawner']['biter-spawner'].resistances, 
         {
@@ -283,7 +145,7 @@ if settingsutil.get_startup_setting("spawner-change") then
             percent = 50
         })
 
-    data.raw['unit-spawner']['spitter-spawner'].max_health = 500
+    data.raw['unit-spawner']['spitter-spawner'].max_health = 600
     data.raw['unit-spawner']['spitter-spawner'].healing_per_tick = 0.1
     tableutil.add(data.raw['unit-spawner']['spitter-spawner'].resistances, 
         {
@@ -319,27 +181,12 @@ if settingsutil.get_startup_setting("tank-change") then
 end
 ------ << Tank
 
------- >> Repair pack
-if settingsutil.get_startup_setting("repair-change") then
-
-    -- type = "repair-tool",
-    -- name = "repair-pack",
-    -- speed = 2,
-    -- durability = 300,
-    -- stack_size = 100
-
-    data.raw['repair-tool']['repair-pack'].speed = 3
-    data.raw['repair-tool']['repair-pack'].durability = 500
-    data.raw['repair-tool']['repair-pack'].stack_size = 50
-end
------- << Repair pack
 
 ------ >> Car
 if settingsutil.get_startup_setting("car-change") then
     -- type = "car",
     -- name = "car",
     -- max_health = 450,
-    -- weight = 700,
     -- resistances =
     -- {
     --   {
@@ -365,6 +212,21 @@ if settingsutil.get_startup_setting("car-change") then
         })
 end
 ------ << Car
+
+------ >> Repair pack
+-- if settingsutil.get_startup_setting("repair-pack-change") then
+
+--     -- type = "repair-tool",
+--     -- name = "repair-pack",
+--     -- speed = 2,
+--     -- durability = 300,
+--     -- stack_size = 100
+
+--     data.raw['repair-tool']['repair-pack'].speed = 2
+--     data.raw['repair-tool']['repair-pack'].durability = 500
+--     data.raw['repair-tool']['repair-pack'].stack_size = 50
+-- end
+------ << Repair pack
 
 ------ >> Shotgun
 if settingsutil.get_startup_setting("shotgun-change") then
@@ -430,14 +292,39 @@ if settingsutil.get_startup_setting("shotgun-change") then
                     a.action_delivery and a.action_delivery.type == "projectile" 
             end
         )
-
-    -- 60
+    -- 60 = 12 * 5 damage
     if shell_action then
-        shell_action.repeat_count = 14
-        shell_action.action_delivery.direction_deviation = 0.5
+        -- shell_action.repeat_count = 12
+        shell_action.action_delivery.direction_deviation = 0.6
     end
 
-    data.raw['projectile']['shotgun-pellet'].action.action_delivery.target_effects.damage.amount = 6.25
+    tableutil.add(data.raw['ammo']['shotgun-shell'].ammo_type.action,
+        {
+            type = "area",
+            radius = 1.4,
+            force = "enemy",
+            action_delivery =
+            {
+                type = "instant",
+                target_effects =
+                {
+                    {
+                        type = "damage",
+                        damage = {amount = 8, type = "physical"}
+                    },
+                    {
+                        type = "push-back",
+                        distance = 1
+                    },
+                    {
+                        type = "create-sticker",
+                        sticker = "spice-rack-short-stun-sticker"
+                    }
+                }
+            }
+        }
+    )
+    -- data.raw['projectile']['shotgun-pellet'].action.action_delivery.target_effects.damage.amount = 5
 
     local _, piercing_shell_action = tableutil.find(data.raw['ammo']['piercing-shotgun-shell'].ammo_type.action,
         function (a) 
@@ -445,13 +332,40 @@ if settingsutil.get_startup_setting("shotgun-change") then
                     a.action_delivery and a.action_delivery.type == "projectile" 
             end
         )
-    -- 128
+    -- 128 = 16 * 8 damage
     if piercing_shell_action then
-        piercing_shell_action.repeat_count = 18
+        -- piercing_shell_action.repeat_count = 18
         piercing_shell_action.action_delivery.direction_deviation = 0.4
     end
 
-    data.raw['projectile']['piercing-shotgun-pellet'].action.action_delivery.target_effects.damage.amount = 10
+    --data.raw['projectile']['piercing-shotgun-pellet'].action.action_delivery.target_effects.damage.amount = 10
+
+    tableutil.add(data.raw['ammo']['piercing-shotgun-shell'].ammo_type.action,
+            {
+                type = "area",
+                radius = 1.4,
+                force = "enemy",
+                action_delivery =
+                {
+                    type = "instant",
+                    target_effects =
+                    {
+                        {
+                            type = "damage",
+                            damage = {amount = 16, type = "physical"}
+                        },
+                        {
+                            type = "push-back",
+                            distance = 1
+                        },
+                        {
+                            type = "create-sticker",
+                            sticker = "spice-rack-short-stun-sticker"
+                        }
+                    }
+                }
+            }
+        )
 
 
     -- type = "gun",
@@ -470,6 +384,7 @@ if settingsutil.get_startup_setting("shotgun-change") then
 
     data.raw['gun']['shotgun'].attack_parameters.movement_slow_down_factor = 0.5
     data.raw['gun']['shotgun'].attack_parameters.projectile_creation_distance = 0.3
+    data.raw['gun']['shotgun'].attack_parameters.min_range = 0
 
     -- type = "gun",
     -- name = "combat-shotgun",
@@ -487,6 +402,7 @@ if settingsutil.get_startup_setting("shotgun-change") then
 
     data.raw['gun']['combat-shotgun'].attack_parameters.movement_slow_down_factor = 0.4
     data.raw['gun']['combat-shotgun'].attack_parameters.projectile_creation_distance = 0.3
+    data.raw['gun']['combat-shotgun'].attack_parameters.min_range = 0
 
 end
 ------ << Shotgun

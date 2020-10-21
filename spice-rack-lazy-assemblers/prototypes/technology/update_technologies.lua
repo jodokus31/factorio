@@ -7,7 +7,5 @@ if settingsutil.get_startup_setting("crafting-limitation-mode") ~= "disabled" th
     tableutil.add(data.raw.technology['speed-module-3'].prerequisites, "automation-3", true)
     tableutil.add(data.raw.technology['effectivity-module-3'].prerequisites, "automation-3", true)
     tableutil.add(data.raw.technology['rocket-control-unit'].prerequisites, "automation-3", true)
-
-    -- tableutil.add(data.raw.technology['rocket-control-unit'].unit.ingredients, {"production-science-pack", 1})
 end
 ------ << Lazy Assemblers

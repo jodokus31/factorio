@@ -4,8 +4,8 @@ local tableutil = require('__spice-rack-core__/util/tableutil')
 ------ >> Long Range Turret
 if settingsutil.get_startup_setting("longrange-turret") then
     local gunturret_longrange = util.table.deepcopy(data.raw['ammo-turret']['gun-turret'])
-    gunturret_longrange.name = "gun-turret-long-range"
-    gunturret_longrange.minable = {mining_time = 0.5, result = "gun-turret-long-range"}
+    gunturret_longrange.name = "spice-rack-longrange-turret"
+    gunturret_longrange.minable = {mining_time = 0.5, result = "spice-rack-longrange-turret"}
     gunturret_longrange.max_health = 500
     gunturret_longrange.automated_ammo_count = 5
     gunturret_longrange.attack_parameters.range = 24
@@ -33,3 +33,17 @@ if settingsutil.get_startup_setting("longrange-turret") then
 end   
 
 ------ << Long Range Turret
+
+------ >> Shotgun
+if settingsutil.get_startup_setting("shotgun-change") then
+    data:extend({
+        {
+            type = "sticker",
+            name = "spice-rack-short-stun-sticker",
+            flags = {"not-on-map"},
+            duration_in_ticks = 0.5*60,
+            target_movement_modifier = 0
+        },
+    })
+end
+------ << Shotgun

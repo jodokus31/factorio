@@ -5,7 +5,7 @@
   "author": "jodokus31",
   "contact": "",
   "homepage": "",
-  "description": "The Spice Rack is intended to spice up the vanilla game, without changing too much. Each change can be disabled individually.\n\nSeveral minor military changes (turrets, research, damage and cost)",
+  "description": "The Spice Rack is intended to spice up the vanilla game, without changing too much. Each change can be disabled individually.\n\nSeveral minor military balancing changes. (turrets, tanks, shotgun, research, damage, cost, ...)",
   "factorio_version":"1.0",
   "dependencies": ["base >= 1.0.0", "spice-rack-core >= 0.0.1"]
 }

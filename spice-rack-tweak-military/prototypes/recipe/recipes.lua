@@ -7,7 +7,7 @@ if settingsutil.get_startup_setting("longrange-turret") then
     {
         {
             type = "recipe",
-            name = "gun-turret-long-range",
+            name = "spice-rack-longrange-turret",
             enabled = false,
             energy_required = 16,
             ingredients =
@@ -17,7 +17,7 @@ if settingsutil.get_startup_setting("longrange-turret") then
                 {"copper-plate", 10},
                 {"concrete", 24}
             },
-            result = "gun-turret-long-range"
+            result = "spice-rack-longrange-turret"
         }
     })
 end

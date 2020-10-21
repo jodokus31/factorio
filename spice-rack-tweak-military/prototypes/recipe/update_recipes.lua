@@ -42,7 +42,7 @@ end
 ------ << Tank
 
 ------ >> Repair pack
-if settingsutil.get_startup_setting("repair-change") then
+if settingsutil.get_startup_setting("repair-pack-change") then
     -- type = "recipe",
     -- name = "repair-pack",
     -- ingredients =
@@ -52,8 +52,8 @@ if settingsutil.get_startup_setting("repair-change") then
     -- },
 
     data.raw.recipe['repair-pack'].ingredients = {
-        {"electronic-circuit", 5},
-        {"iron-gear-wheel", 5}
+        {"electronic-circuit", 3},
+        {"iron-gear-wheel", 3}
     }
 end
 ------ << Repair pack
