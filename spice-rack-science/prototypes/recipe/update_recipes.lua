@@ -34,7 +34,7 @@ if settingsutil.get_startup_setting("furnace-progression") then
     --     name = "electric-furnace",
     --     ingredients = {{"steel-plate", 10}, {"advanced-circuit", 5}, {"stone-brick", 10}},
 
-    data.raw.recipe['electric-furnace'].ingredients = { {"steel-furnace", 1}, {"concrete", 10}, {"advanced-circuit", 4}}
+    data.raw.recipe['electric-furnace'].ingredients = { {"steel-furnace", 1}, {"concrete", 10}, {"advanced-circuit", 5}}
 end
 
 ------ << Furnace & Drill Progression

@@ -5,12 +5,17 @@ local tableutil = require('__spice-rack-core__/util/tableutil')
 if settingsutil.get_startup_setting("crafting-limitation-mode") ~= "disabled" then
 
     local recipe_categories = {
-        ["assembler2"] =
+        ["assembler2"] = {},
+        ["assembler2_nohandcraft"] = {},
+        ["assembler3"] = {},
+        ["assembler3_nohandcraft"] = {},
+    }
+    
+    recipe_categories["assembler2"] =
         {
-            "assembling-machine-2",
             "assembling-machine-3",
             "electric-furnace",
-
+            
             "pumpjack", 
             "chemical-plant",
             
@@ -22,12 +27,13 @@ if settingsutil.get_startup_setting("crafting-limitation-mode") ~= "disabled" th
             "utility-science-pack",
 
             "beacon",
+            
             "productivity-module",
             "speed-module",
             "effectivity-module",
-        },
-            
-        ["assembler2_nohandcraft"] =
+        }
+
+    recipe_categories["assembler2_nohandcraft"] =
         {
             "low-density-structure",
             "flying-robot-frame",
@@ -50,34 +56,39 @@ if settingsutil.get_startup_setting("crafting-limitation-mode") ~= "disabled" th
             "artillery-turret",
             "artillery-wagon",
             "artillery-shell",
-        },
+        }
 
-        ["assembler3"] =
+    recipe_categories["assembler3"] =
         {
-            "oil-refinery",
             "centrifuge",
             "nuclear-reactor",
 
             "satellite",
-
+            
             "spidertron-remote",
-        },
+        }
 
-        ["assembler3_nohandcraft"] =
+    recipe_categories["assembler3_nohandcraft"] =
         {
             "productivity-module-3",
             "speed-module-3",
             "effectivity-module-3",
-
+            
             "rocket-control-unit",
-
             "rocket-silo",
             
             "spidertron",
             
             "atomic-bomb",
-        },
-    }
+        }
+
+    if settingsutil.get_startup_setting("old-lazy-bastard") then
+        table.insert(recipe_categories["assembler2"], "assembling-machine-2")
+        table.insert(recipe_categories["assembler3"], "oil-refinery")
+    else
+        table.insert(recipe_categories["assembler2"], "oil-refinery")
+    end
+
 
     for _, recipe in pairs(data.raw.recipe) do
         -- only overwrite category empty or "crafting"

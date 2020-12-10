@@ -11,6 +11,14 @@ data:extend(
     },
     {
         type = "bool-setting",
+        name = "spice-rack-old-lazy-bastard",
+        order = "b",
+        setting_type = "startup",
+        default_value = false,
+        per_user = false,
+    },
+    {
+        type = "bool-setting",
         name = "spice-rack-lazy-bastard-marathon",
         order = "c",
         setting_type = "startup",

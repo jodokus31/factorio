@@ -1,6 +1,10 @@
 local TableUtil = {}
 
 function TableUtil.add(tbl, value, check_if_exists)
+    if not tbl or not value then
+        return
+    end
+
     local index = nil
     if check_if_exists then
         if type(value) ~= "table" then
