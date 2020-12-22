@@ -55,7 +55,7 @@ if settingsutil.get_startup_setting("change-military3-research") then
 
     data.raw.technology['military-3'].unit.count = 200
     
-    tableutil.add(data.raw.technology['tanks'].prerequisites, "chemical-science-pack", true)
+    tableutil.add(data.raw.technology['tank'].prerequisites, "chemical-science-pack", true)
 end
 
 if settingsutil.get_startup_setting("longrange-turret") then

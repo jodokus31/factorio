@@ -9,7 +9,7 @@ if settingsutil.get_startup_setting("longrange-turret") then
             type = "technology",
             name = "spice-rack-longrange-turret-research",
             icon_size = 128,
-            icon = "__base__/graphics/technology/turrets.png",
+            icon = "__base__/graphics/technology/gun-turret.png",
             effects =
             {
                 {
@@ -22,7 +22,7 @@ if settingsutil.get_startup_setting("longrange-turret") then
                     modifier = 0.25
                 }
             },
-            prerequisites = {"turrets", "military-3", "concrete"},
+            prerequisites = {"gun-turret", "military-3", "concrete"},
             unit =
             {
                 count = 300,
