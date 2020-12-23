@@ -1,0 +1,47 @@
+Analysis:
+
+
+Crafts: 142 (13 +5 +16 +2 +65 +20 +21)
+Wire 48 (24), Gears: 14 (14)
+-> 104
+
+i263 (10 +8 +100 +70 +40 +35) - 56 -> 207
+c71 (8 +1 +40 +10 +12) - 24 -> 47
+
+pump: (13 crafts) i10, c8
+- 1 pump
+- 1 gear i4
+- 1 pipe i2
+- 2 circuits (10) i4, c8
+   - 16 wire (8)
+
+boiler: (5 crafts) i8
+- 1 boiler
+- 4 pipe i8
+
+steam engine: (16 crafts) i100
+- 1 steam engine
+- 10 gears i40
+- 5 pipe i10
+
+power pole: (2 crafts) c1
+- 1 power pole
+- 1 wire (1) c1
+
+lab:(14 +50 +1 = 65 crafts) i70, c40
+- 1 lab
+- 10 circuits (50) i20, c40
+  - 80 wire (40)
+- 4 belts (2) i10
+ - 2 gears   
+- 10 gears i40
+
+reds: (20 crafts) i40, c10
+- 10 red c10
+- 10 gears i40
+
+assembly: (21 crafts) i35, c12
+- 1 assembly i9
+- 5 gears i20
+- 3 circuits (15) i6, c12
+ - 24 wire (12)
