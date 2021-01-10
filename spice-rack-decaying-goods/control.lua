@@ -163,16 +163,16 @@ script.on_event(defines.events.on_runtime_mod_setting_changed, function(event)
 end)
 
 
-commands.add_command("spice_rack_item_statistics", "display all considered items", function()
+commands.add_command("spice_rack_item_statistics", "displays a statistics about items and how much already decayed", function()
     local nextUpdateInSec = (settingswrapper.slot_count - global.SpiceRack_UpdateSlot) * settingswrapper.interval / 60
     statistics.logStatistics(nextUpdateInSec)
 end)
 
-commands.add_command("spice_rack_active_containers", "display all containers", function()
+commands.add_command("spice_rack_active_containers", "displays all containers (chests)", function()
     containers.logActiveContainers(function (text) logger.manual(text, true) end)
 end)
 
-commands.add_command("spice_rack_rebuild_containers", "rebuild containers", function()
+commands.add_command("spice_rack_rebuild_containers", "rebuild the containers structure, if necessary", function()
     containers.rebuildContainers()
 end)
 

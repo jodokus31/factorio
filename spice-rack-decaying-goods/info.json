@@ -5,7 +5,7 @@
   "author": "jodokus31",
   "contact": "",
   "homepage": "",
-  "description": "The Spice Rack is intended to spice up the vanilla game, without changing too much. Each change can be disabled individually.\n\nGoods, which are buffered in chests, are decaying and emitting pollution. The more a chest is filled, the bigger percentage of the content is decaying. Different goods have different max. percent decay per hour",
+  "description": "The Spice Rack is intended to spice up the vanilla game, without changing too much. Each change can be disabled individually.\n\nBuffering gets even worse. Basic goods are decaying and emitting pollution, if they are buffered in chests. The more a chest is filled, the bigger percentage of the content is decaying. This should encourage to don't excessively buffer basic items, but create production lines, which uses the material on the fly. Some buffering is always necessary, f.e. for train stations, but it's a consideration, how small this buffer can be.",
   "factorio_version":"1.1",
   "dependencies": ["base >= 1.1.0"]
 }
