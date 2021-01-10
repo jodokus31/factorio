@@ -165,9 +165,9 @@ For each decayed item, it is removed from the chest and/or pollution is emitted,
 
 ### Commands
 There are some command line commands:\
-/spice_rack_item_statistics - displays a statistics about items and how much already decayed
-/spice_rack_active_containers - displays all containers (chests)
-/spice_rack_rebuild_containers - rebuild the containers structure, if necessary
+/spice_rack_item_statistics - displays a statistics about items and how much already decayed\
+/spice_rack_active_containers - displays all containers (chests)\
+/spice_rack_rebuild_containers - rebuild the containers structure, if necessary\
 
 ### Technical background
 The mods keeps track over all placed containers and investigates the content. For the amount of each decayable item, an integer decay is calculated and the items get removed from container and/or pollution is emitted. Since decay is sometimes very slow, the decayed fraction per item is carried along to the next calculation of that item.
