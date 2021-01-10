@@ -19,11 +19,11 @@ if settingsutil.get_startup_setting("flamethrower-change") then
         if fluid then
             if fluid.type == "crude-oil" then
                 fluid.damage_modifier = 0.5
-            else if fluid.type == "heavy-oil" then
+            elseif fluid.type == "heavy-oil" then
                 fluid.damage_modifier = 0.7
-            else if fluid.type == "light-oil" then
+            elseif fluid.type == "light-oil" then
                 fluid.damage_modifier = 1
-            end end end
+            end
         end
     end
 
@@ -112,9 +112,85 @@ end
 ------ << Grenade
 
 ------ >> Landmine
--- if settingsutil.get_startup_setting("landmine-change") then
+if settingsutil.get_startup_setting("landmine-change") then
+--   {
+--     type = "land-mine",
+--     name = "land-mine",
+    
+--     trigger_radius = 2.5,
+--     ammo_category = "landmine",
+--     action =
+--     {
+--       type = "direct",
+--       action_delivery =
+--       {
+--         type = "instant",
+--         source_effects =
+--         {
+--           {
+--             type = "nested-result",
+--             affects_target = true,
+--             action =
+--             {
+--               type = "area",
+--               radius = 6,
+--               force = "enemy",
+--               action_delivery =
+--               {
+--                 type = "instant",
+--                 target_effects =
+--                 {
+--                   {
+--                     type = "damage",
+--                     damage = { amount = 250, type = "explosion"}
+--                   },
+--                   {
+--                     type = "create-sticker",
+--                     sticker = "stun-sticker"
+--                   }
+--                 }
+--               }
+--             }
+--           },
+--           {
+--             type = "create-entity",
+--             entity_name = "explosion"
+--           },
+--           {
+--             type = "damage",
+--             damage = { amount = 1000, type = "explosion"}
+--           }
+--         }
+--       }
+--     }
+--   },
+    local damage_effect_index, damage_effect = tableutil.find(
+        data.raw['land-mine']['land-mine'].action.action_delivery.source_effects,
+        function (a) return a and a.type == "damage" end)
 
--- end
+    if damage_effect_index >= 0 then
+        -- i don't know, what this damage does, but i reduce it anyway
+        damage_effect.damage.amount = 600
+    end
+
+    local nested_effect_index, nested_effect = tableutil.find(
+        data.raw['land-mine']['land-mine'].action.action_delivery.source_effects,
+        function (a) return a and a.type == "nested-result" end)
+
+    if nested_effect_index >= 0 then
+
+        nested_effect.action.radius = 5
+
+        local area_damage_effect_index, area_damage_effect = tableutil.find(
+            nested_effect.action.action_delivery.target_effects,
+            function (a) return a and a.type == "damage" end)
+        
+        if area_damage_effect_index >= 0 then
+            -- 3 mines take down a big biter, and 2 a big-spitter
+            area_damage_effect.damage.amount = 150
+        end
+    end
+end
 ------ << Landmine
 
 ------ >> Spawner
