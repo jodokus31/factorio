@@ -1,3 +1,4 @@
+require("util")
 local TableUtil = {}
 
 function TableUtil.add(tbl, value, check_if_exists)

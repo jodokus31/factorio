@@ -1,0 +1,11 @@
+{
+  "name": "spice-rack-decaying-goods",
+  "version": "0.0.1",
+  "title": "The Spice Rack - Decaying goods",
+  "author": "jodokus31",
+  "contact": "",
+  "homepage": "",
+  "description": "The Spice Rack is intended to spice up the vanilla game, without changing too much. Each change can be disabled individually.\n\nGoods, which are buffered in chests, are decaying and emitting pollution. The more a chest is filled, the bigger percentage of the content is decaying. Different goods have different max. percent decay per hour",
+  "factorio_version":"1.1",
+  "dependencies": ["base >= 1.1.0"]
+}
