@@ -47,3 +47,17 @@ if settingsutil.get_startup_setting("shotgun-change") then
     })
 end
 ------ << Shotgun
+
+------ >> Landmine
+if settingsutil.get_startup_setting("landmine-change") then
+    data:extend({
+        {
+            type = "sticker",
+            name = "spice-rack-middle-stun-sticker",
+            flags = {"not-on-map"},
+            duration_in_ticks = 1.5*60,
+            target_movement_modifier = 0
+        },
+    })
+end
+------ << Landmine

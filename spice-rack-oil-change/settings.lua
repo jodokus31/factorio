@@ -5,8 +5,8 @@ data:extend(
         name = "spice-rack-oil-change",
         order = "a",
         setting_type = "startup",
-        default_value = "basic oil and research",
-        allowed_values = {"disabled", "basic oil only", "basic oil and research"},
+        default_value = "research",
+        allowed_values = {"disabled", "basic", "research"},
         per_user = false,
     },
     {

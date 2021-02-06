@@ -82,7 +82,7 @@ if settingsutil.get_startup_setting("crafting-limitation-mode") ~= "disabled" th
             "atomic-bomb",
         }
 
-    if settingsutil.get_startup_setting("old-lazy-bastard") then
+    if settingsutil.get_startup_setting("classic-lazy-bastard") then
         table.insert(recipe_categories["assembler2"], "assembling-machine-2")
         table.insert(recipe_categories["assembler3"], "oil-refinery")
     else

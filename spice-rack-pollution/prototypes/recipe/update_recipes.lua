@@ -3,7 +3,7 @@ local tableutil = require('__spice-rack-core__/util/tableutil')
 
 ------ >> Effectivity Modules
 
-if settingsutil.get_startup_setting("effectivity-modules-rebalance") then
+if settingsutil.get_startup_setting("effectivity-modules-change") then
     -- name = "effectivity-module",
     -- ingredients =
     -- {

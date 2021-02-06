@@ -2,12 +2,11 @@
 Features some mods for the game factorio.
 
 # The Spice Rack
-The Spice Rack is intended to spice up the vanilla game, without changing too much. Each change can be disabled individually.
-
+The Spice Rack is intended to spice up the vanilla game by changing some well chosen details. Most changes can be disabled individually.
 
 
 ## The Spice Rack - Lazy Assemblers
-Crafting limitations for lower tier assemblers (and characters) to make progression more meaningful
+Crafting limitations for lower tier assemblers (and character) to make progression more meaningful
 
 ### Crafting Limitation
 Select crafting limitation:\
@@ -15,9 +14,9 @@ Select crafting limitation:\
 "assembler only" - Lower tiers of assemblers are not able to craft several midgame and advanced recipes\
 "assembler and character" - Additionally, the character can't handcraft several midgame and advanced recipes (a subset of recipes from "assembler only"
 
-### Old lazy bastard
-Lazy Bastard gets more challenging, because assembler 2 needs at least assembler 2 and oil refinery needs assembler 3 to be crafted.\
-The first ones have to be crafted by hand in order to proceed, similar to how Factorio 0.16 behaved.\
+### Classic lazy bastard
+Lazy Bastard gets more challenging. First assembler 2 and oil refineries have to be crafted by hand. Oil refineries can only be crafted in assembler 3.\
+Factorio 0.16 behaved that way and it challenges to not waste the free handcrafts\
 (Does nothing if "Crafting Limitation" is disabled)
 
 ### Lazy bastard marathon
@@ -58,7 +57,7 @@ All furnaces consume more fuel/energy:\
 The stone furnace consumes more fuel and produces more pollution.\
 The steel furnace consumes even more fuel, but pollution is like vanilla.\
 The electric furnace is 1.5 times faster and produces more pollution accordingly. Power usage is higher, but it has 3 module slots.\
-The burner mining drill produces even more pollution and consumes more fuel
+The burner mining drill is worse and produces more pollution and consumes more fuel
 
 
 
@@ -66,25 +65,26 @@ The burner mining drill produces even more pollution and consumes more fuel
 Map presets for harder rail worlds
 
 ### (SR) Rail world
-Rail world with higher time evolution. Resources are scarcer, but as large as vanilla rail world.
+Rail world with higher time evolution. Resources are scarcer, but almost as large as vanilla rail world.
+
+### (SR) Death rail world
+Rail world with death world biter and pollution settings. Resources are scarcer, but almost as large as vanilla rail world.
+
+### (SR) Rail world marathon
+Rail world with higher time evolution and marathon recipes and technology setting. Resources are scarcer, but almost as large as vanilla rail world. 
+
+### (SR) Death rail world marathon
+Rail world with death world marathon biter, pollution, recipes and technology settings. Resources are scarcer, but almost as large as vanilla rail world.
+
 
 ### (SR) Rail world small but rich
 Rail world with higher time evolution. Resources are scarcer and smaller, but richer (except oil).
 
-### (SR) Death rail world
-Rail world with death world biter and pollution settings. Resources are scarcer, but as large as vanilla rail world.
-
 ### (SR) Death rail world small but rich
 Rail world with death world biter and pollution settings. Resources are scarcer and smaller, but richer (except oil).
 
-### (SR) Rail world marathon
-Rail world with higher time evolution and marathon recipes and technology setting. Resources are scarcer, but as large as vanilla rail world. 
-
 ### (SR) Rail world marathon small but rich
 Rail world with higher time evolution and marathon recipes and technology setting. Resources are scarcer and smaller, but richer (except oil).
-
-### (SR) Death rail world marathon
-Rail world with death world marathon biter, pollution, recipes and technology settings. Resources are scarcer, but as large as vanilla rail world.
 
 ### (SR) Death rail world marathon small but rich
 Rail world with death world marathon biter, pollution, recipes and technology settings. Resources are scarcer and smaller, but richer (except oil).
@@ -103,7 +103,7 @@ Utility science pack requires uranium-238
 ### Production Science & Furnace progression
 Furnaces depend on lower tiers, so it affects production science pack and early game\
 The stone furnace is built from stone bricks, which affects early game.\
-The steel furnace needs just additional steel.\
+The steel furnace just needs additional steel.\
 The electric furnace needs additional concrete instead of bricks (less steel compared to vanilla)
 
 ### Rocket silo
@@ -126,33 +126,44 @@ Physical projectile damage 3 and Weapon shooting speed 3 has shorter research ti
 Weapon shooting speed is a bit less expensive for tier 1, 2 and 3 
 
 ### Shotgun
-Improve shotgun (more near damage, projectiles spread wider, character moves a bit faster while shooting)
+Improve shotgun (more near damage, projectiles spread wider, character moves a bit faster while shooting). It has a bit of aoe damage directly in front and a small pushback
 
 ### Follower robot count
 Follower robot count researches are less expensive
 
-### Flamethrower turrets
-The flamethrower turret consumes 3 times more oil and has less base damage. Still very powerful.\
+### Flamethrower
+The flamethrower turret consumes 5 times more oil and has less base damage. The refined flammable research adds more damage as compensation.\
 Crude oil has only 50% damage, heavy oil 70% and light oil 100%.\
-The flamethrower research is more expensive
+The flamethrower research is more expensive.\
+The flamethrower ammo also has less base damage and needs light oil instead of crude oil.
 
 ### Laser turrets
 The laser turret has more drain (60kW instead of 24kW)
 
-### Landmines
-Landmines are twice as expensive. 150 base damage instead of 250. Also the damage radius is lowered from 6 to 5
-
 ### Spawners
 Spawners are harder to kill (more health, more self healing, addtional laser and impact resistances)
+
+### Biters
+Big and behemoth biters have additional laser resistance.
+
+### Gun turret damage research
+Gun turrets (and the new long range turret) profit less from physical damage research to reduce their insane DPS in late game
+
+### Gun turret health
+Gun turret health gets increased to be less fragile
+
+### Landmines
+Landmines are twice as expensive and base damage is reduced from 250 to 150.\nArming timeout has increased from 2 to 5 sec. and the stun time is reduced from 3 to 1.5 sec.
 
 ### Tank
 Improve tank (more hitpoints, weight and impact), but its more expensive
 
 ### Car
-Improve car (more hitpoints, a bit physical resistance)
+Improve car (more hitpoints and resistances)
 
 ### Repair pack
 Repair pack is more expensive
+
 
 
 
@@ -167,17 +178,24 @@ For each decayed item, it is removed from the chest and/or pollution is emitted,
 There are some command line commands:\
 /spice_rack_item_statistics - displays a statistics about items and how much already decayed\
 /spice_rack_active_containers - displays all containers (chests)\
-/spice_rack_rebuild_containers - rebuild the containers structure, if necessary\
+/spice_rack_rebuild_containers - rebuild the containers structure, if necessary
 
 ### Technical background
-The mods keeps track over all placed containers and investigates the content. For the amount of each decayable item, an integer decay is calculated and the items get removed from container and/or pollution is emitted. Since decay is sometimes very slow, the decayed fraction per item is carried along to the next calculation of that item.
+The mods keeps track over all placed containers and investigates the content. For the amount of each decayable item, an integer decay is calculated and the items get removed from container and/or pollution is emitted. Since decay is sometimes very slow, the decayed fraction per item is carried along to the next calculation of that item.\
+\
+To ensure performance, the containers are handled not all at once, but they are distributed over a timespan of ~ 2 min. . When a container is added, it's assign to an alternating slot. One slot is handled each interval of 10 ticks (configurable). The amount of slots is a prime value: 719 (configurable). 7190 ticks ~ 2 min.
 
-To ensure performance, the containers are handled not all at once, but they are distributed over a timespan of 2 min. . When a container is added, it's assign to an alternating slot. One slot is handled each interval of 10 ticks (configurable). The amount of slots is a prime value: 719 (configurable). 7190 ticks ~ 2 min.
-
-
+### Options
+Emitted pollution per decayed item - How much pollution is emitted per decayed item (0 is none)\
+Destroy decayed items from chest - Whether decayed items are actually destroyed\
+Decay % <item>- Max. decay rate percent per hour (less than 48 stacks in chest means lower decay rate)\
+\
+Expert: Slot count for containers - Expert: More slots are useful for large amount of containers to increase performance. Must be a prime\
+Expert: Interval in ticks - Expert: Bigger intervals enlarge the turnaround time (slots * interval). Can be increased to improve performance.
+Debug mode for decaying goods - 0=off, 1=errors only, 2=errors and warning, 3=additional infos, 4=additional debug logs
 
 ## The Spice Rack - Time display
-Simple Time display. (Credits to thuejk for looking up code in his playtime mod)
+Simple Time display similar to playtime mod by thuejk. (Credits to thuejk for looking up code)
 
 
 ## The Spice Rack - Core

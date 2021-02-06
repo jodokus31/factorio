@@ -27,25 +27,27 @@ if settingsutil.get_startup_setting("flamethrower-change") then
         end
     end
 
-    data.raw['fluid-turret']['flamethrower-turret'].attack_parameters.fluid_consumption = 0.6
+    data.raw['fluid-turret']['flamethrower-turret'].attack_parameters.fluid_consumption = 0.6 --> 9/s
 
     -- type = "stream",
     -- name = "flamethrower-fire-stream",
 
-    local action_index, action = tableutil.find(
-        data.raw.stream['flamethrower-fire-stream'].action,
-        function (a) return a and a.type == "area" end)
+    do
+        local action_index, action = tableutil.find(
+            data.raw.stream['flamethrower-fire-stream'].action,
+            function (a) return a and a.type == "area" end)
 
-    if action then
-        
-        action.radius = 1.8  -- original 2.5 
+        if action then
+            
+            action.radius = 1.25  -- original 2.5 
 
-        local effect_index, effect = tableutil.find(
-            action.action_delivery.target_effects,
-            function (e) return e and e.type == "damage" end)
+            local effect_index, effect = tableutil.find(
+                action.action_delivery.target_effects,
+                function (e) return e and e.type == "damage" end)
 
-        if effect then
-            effect.damage.amount = 1.5 -- original 3 == 90
+            if effect then
+                effect.damage.amount = 0.75 -- original 3 == 90
+            end
         end
     end
 
@@ -59,6 +61,7 @@ if settingsutil.get_startup_setting("flamethrower-change") then
     -- fire_spread_cooldown = 30,
     -- fire_spread_radius = 0.75
 
+    -- longer, but lot less damage
     data.raw.sticker['fire-sticker'].duration_in_ticks = 60 * 60
     data.raw.sticker['fire-sticker'].damage_per_tick = { amount = 10 * 10 / 60, type = "fire" }
 
@@ -66,12 +69,59 @@ if settingsutil.get_startup_setting("flamethrower-change") then
     -- name = "fire-flame",
     -- damage_per_tick = {amount = 13 / 60, type = "fire"},
 
-    data.raw.fire['fire-flame'].damage_per_tick = {amount = 8 / 60, type = "fire"}
+    -- small biters and spitters are not instantly killed by fire on the ground
+    data.raw.fire['fire-flame'].damage_per_tick = {amount = 3 / 60, type = "fire"}
+
+
+    -- type = "stream",
+    -- name = "handheld-flamethrower-fire-stream",
+    -- action =
+    -- {
+    --   {
+    --     type = "area",
+    --     radius = 2.5,
+    --     action_delivery =
+    --     {
+    --       type = "instant",
+    --       target_effects =
+    --       {
+    --         {
+    --           type = "create-sticker",
+    --           sticker = "fire-sticker",
+    --           show_in_tooltip = true
+    --         },
+    --         {
+    --           type = "damage",
+    --           damage = { amount = 2, type = "fire" },
+    --           apply_damage_to_trees = false
+    --         }
+    --       }
+    --     }
+    --   },
+
+    do
+        local action_index, action = tableutil.find(
+            data.raw.stream['handheld-flamethrower-fire-stream'].action,
+            function (a) return a and a.type == "area" end)
+
+        if action then
+            
+            action.radius = 1.25  -- original 2.5 
+
+            local effect_index, effect = tableutil.find(
+                action.action_delivery.target_effects,
+                function (e) return e and e.type == "damage" end)
+
+            if effect then
+                effect.damage.amount = 0.5 -- original 2 == 60
+            end
+        end
+    end
 end
 ------ << Flamethrower
 
 ------ >> Laser Turret
-if settingsutil.get_startup_setting("laser-change") then
+if settingsutil.get_startup_setting("laser-turret-change") then
 
     -- type = "electric-turret",
     -- name = "laser-turret",
@@ -86,6 +136,20 @@ if settingsutil.get_startup_setting("laser-change") then
     
 end
 ------ << Laser Turret
+
+-- ------ >> Gun Turret health
+-- if settingsutil.get_startup_setting("gun-turret-health-change") then
+
+--     -- type = "ammo-turret",
+--     -- name = "gun-turret",
+    
+--     -- max_health = 400,
+    
+--     data.raw['ammo-turret']['gun-turret'].max_health = 600
+    
+-- end
+-- ------ << Gun Turret health
+
 
 ------ >> Grenade
 -- if settingsutil.get_startup_setting("grenade-change") then
@@ -164,6 +228,9 @@ if settingsutil.get_startup_setting("landmine-change") then
 --       }
 --     }
 --   },
+    -- arming timout: default 2*60 -> 2 sec.
+    data.raw['land-mine']['land-mine'].timeout = 5*60 -- 5 sec.
+
     local damage_effect_index, damage_effect = tableutil.find(
         data.raw['land-mine']['land-mine'].action.action_delivery.source_effects,
         function (a) return a and a.type == "damage" end)
@@ -179,65 +246,27 @@ if settingsutil.get_startup_setting("landmine-change") then
 
     if nested_effect_index >= 0 then
 
-        nested_effect.action.radius = 5
+        --nested_effect.action.radius = 6
 
         local area_damage_effect_index, area_damage_effect = tableutil.find(
             nested_effect.action.action_delivery.target_effects,
             function (a) return a and a.type == "damage" end)
         
         if area_damage_effect_index >= 0 then
-            -- 3 mines take down a big biter, and 2 a big-spitter
+            -- 3 mines take down a big biter, and 2 for a big-spitter
             area_damage_effect.damage.amount = 150
+        end
+
+        local stun_effect_index, stun_effect_effect = tableutil.find(
+            nested_effect.action.action_delivery.target_effects,
+            function (a) return a and a.type == "create-sticker" end)
+        
+        if stun_effect_index >= 0 then
+            stun_effect_effect.sticker = "spice-rack-middle-stun-sticker"
         end
     end
 end
 ------ << Landmine
-
------- >> Spawner
-if settingsutil.get_startup_setting("spawner-change") then
-
-    -- type = "unit-spawner",
-    -- name = "biter-spawner",
-    -- max_health = 350,
-    -- healing_per_tick = 0.02,
-
-    -- type = "unit-spawner",
-    -- name = "spitter-spawner",
-    -- max_health = 350,
-    -- healing_per_tick = 0.02,
-
-    data.raw['unit-spawner']['biter-spawner'].max_health = 600
-    data.raw['unit-spawner']['biter-spawner'].healing_per_tick = 0.1
-    tableutil.add(data.raw['unit-spawner']['biter-spawner'].resistances, 
-        {
-            type = "laser",
-            decrease = 0,
-            percent = 50
-        })
-    tableutil.add(data.raw['unit-spawner']['biter-spawner'].resistances, 
-        {
-            type = "impact",
-            decrease = 0,
-            percent = 50
-        })
-
-    data.raw['unit-spawner']['spitter-spawner'].max_health = 600
-    data.raw['unit-spawner']['spitter-spawner'].healing_per_tick = 0.1
-    tableutil.add(data.raw['unit-spawner']['spitter-spawner'].resistances, 
-        {
-            type = "laser",
-            decrease = 0,
-            percent = 50
-        })
-    tableutil.add(data.raw['unit-spawner']['spitter-spawner'].resistances, 
-        {
-            type = "impact",
-            decrease = 0,
-            percent = 50
-        })
-
-end
------- << Spawner
 
 ------ >> Tank
 if settingsutil.get_startup_setting("tank-change") then
@@ -248,7 +277,7 @@ if settingsutil.get_startup_setting("tank-change") then
     -- weight = 20000,
     -- consumption = "600kW",
     -- braking_power = "400kW",
-    data.raw['car']['tank'].max_health = 3000
+    data.raw['car']['tank'].max_health = 4000
     data.raw['car']['tank'].rotation_speed = 0.004
     data.raw['car']['tank'].weight = 25000
     data.raw['car']['tank'].consumption = "900kW"
@@ -283,9 +312,15 @@ if settingsutil.get_startup_setting("car-change") then
     tableutil.add(data.raw['car']['car'].resistances,
         {
             type = "physical",
-            decrease = 3,
+            decrease = 4,
             percent = 30
-        })
+        },
+        {
+            type = "acid",
+            decrease = 0,
+            percent = 20
+        }
+    )
 end
 ------ << Car
 
@@ -482,3 +517,188 @@ if settingsutil.get_startup_setting("shotgun-change") then
 
 end
 ------ << Shotgun
+
+
+------ >> Spawner
+if settingsutil.get_startup_setting("spawner-change") then
+
+    -- type = "unit-spawner",
+    -- name = "biter-spawner",
+    -- max_health = 350,
+    -- healing_per_tick = 0.02,
+
+    -- type = "unit-spawner",
+    -- name = "spitter-spawner",
+    -- max_health = 350,
+    -- healing_per_tick = 0.02,
+
+    data.raw['unit-spawner']['biter-spawner'].max_health = 600
+    data.raw['unit-spawner']['biter-spawner'].healing_per_tick = 0.1
+    tableutil.add(data.raw['unit-spawner']['biter-spawner'].resistances, 
+        {
+            type = "laser",
+            decrease = 0,
+            percent = 50
+        })
+    tableutil.add(data.raw['unit-spawner']['biter-spawner'].resistances, 
+        {
+            type = "impact",
+            decrease = 0,
+            percent = 50
+        })
+
+    data.raw['unit-spawner']['spitter-spawner'].max_health = 600
+    data.raw['unit-spawner']['spitter-spawner'].healing_per_tick = 0.1
+    tableutil.add(data.raw['unit-spawner']['spitter-spawner'].resistances, 
+        {
+            type = "laser",
+            decrease = 0,
+            percent = 50
+        })
+    tableutil.add(data.raw['unit-spawner']['spitter-spawner'].resistances, 
+        {
+            type = "impact",
+            decrease = 0,
+            percent = 50
+        })
+
+end
+------ << Spawner
+
+------ << Biters
+if settingsutil.get_startup_setting("biter-change") then
+    -- type = "unit",
+    -- name = "medium-biter",
+    -- max_health = 75,
+    -- resistances =
+    -- {
+    --   {
+    --     type = "physical",
+    --     decrease = 4,
+    --     percent = 10
+    --   },
+    --   {
+    --     type = "explosion",
+    --     percent = 10
+    --   }
+    -- },
+
+
+    -- type = "unit",
+    -- name = "big-biter",
+    -- max_health = 375,
+    -- resistances =
+    -- {
+    --   {
+    --     type = "physical",
+    --     decrease = 8,
+    --     percent = 10
+    --   },
+    --   {
+    --     type = "explosion",
+    --     percent = 10
+    --   }
+    -- }
+
+    tableutil.add(data.raw['unit']['big-biter'].resistances, 
+        {
+            type = "laser",
+            decrease = 5,
+            percent = 20
+        })
+    
+    -- do
+    --     local _, resistance = tableutil.find(data.raw['unit']['big-biter'].resistances, 
+    --         function (r) return r and r.type == "explosion" end)
+    --     if resistance then
+    --         resistance.decrease = 5
+    --         resistance.percent = 15
+    --     end
+    -- end
+
+    -- type = "unit",
+    -- name = "behemoth-biter",
+    -- max_health = 3000,
+    -- resistances =
+    -- {
+    --   {
+    --     type = "physical",
+    --     decrease = 12,
+    --     percent = 10
+    --   },
+    --   {
+    --     type = "explosion",
+    --     decrease = 12,
+    --     percent = 10
+    --   }
+    -- }
+    tableutil.add(data.raw['unit']['behemoth-biter'].resistances, 
+        {
+            type = "laser",
+            decrease = 10,
+            percent = 40
+        })
+    
+    -- do
+    --     local _, resistance = tableutil.find(data.raw['unit']['behemoth-biter'].resistances, 
+    --         function (r) return r and r.type == "explosion" end)
+    --     if resistance then
+    --         resistance.decrease = 15
+    --         resistance.percent = 20
+    --     end
+    -- end
+
+    -- type = "unit",
+    -- name = "medium-spitter",
+    -- max_health = 50,
+    -- resistances =
+    -- {
+    --   {
+    --     type = "explosion",
+    --     percent = 10
+    --   }
+    -- },
+
+    -- type = "unit",
+    -- name = "big-spitter",
+    -- max_health = 200,
+    -- resistances =
+    -- {
+    --   {
+    --     type = "explosion",
+    --     percent = 15
+    --   }
+    -- },
+
+    -- do
+    --     local _, resistance = tableutil.find(data.raw['unit']['big-spitter'].resistances, 
+    --         function (r) return r and r.type == "explosion" end)
+    --     if resistance then
+    --         resistance.decrease = 15
+    --         resistance.percent = 20
+    --     end
+    -- end
+
+    -- type = "unit",
+    -- name = "behemoth-spitter",
+
+    -- max_health = 1500,
+    -- resistances =
+    -- {
+    --   {
+    --     type = "explosion",
+    --     percent = 30
+    --   }
+    -- },
+
+    -- do
+    --     local _, resistance = tableutil.find(data.raw['unit']['behemoth-spitter'].resistances, 
+    --         function (r) return r and r.type == "explosion" end)
+    --     if resistance then
+    --         resistance.decrease = 15
+    --         resistance.percent = 20
+    --     end
+    -- end
+
+end
+------ >> Biters

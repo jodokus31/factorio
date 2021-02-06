@@ -17,6 +17,25 @@ if settingsutil.get_startup_setting("landmine-change") then
     data.raw.recipe['land-mine'].ingredients = { {"steel-plate", 2}, {"explosives", 4} }
 end
 
+if settingsutil.get_startup_setting("flamethrower-change") then
+    -- type = "recipe",
+    -- name = "flamethrower-ammo",
+    -- category = "chemistry",
+    -- enabled = false,
+    -- energy_required = 6,
+    -- ingredients =
+    -- {
+    --   {type="item", name="steel-plate", amount=5},
+    --   {type="fluid", name="crude-oil", amount=100}
+    -- },
+    -- result = "flamethrower-ammo",
+
+    data.raw.recipe['flamethrower-ammo'].ingredients = { 
+        { type="item", name="steel-plate", amount=5 },
+        { type="fluid", name="light-oil", amount=100 } 
+    }
+end
+
 ------ << Landmine
 
 ------ >> Tank

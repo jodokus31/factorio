@@ -7,7 +7,7 @@ table.insert(settings,
         name = "spice-rack-decaying-goods-debug-mode",
         order = "a",
         setting_type = "runtime-global",
-        default_value = 2,
+        default_value = 0,
         allowed_values = { 0, 1, 2, 3, 4 }
     })
 
@@ -18,7 +18,8 @@ table.insert(settings,
         order = "b",
         setting_type = "startup",
         default_value = 5.0,
-        minimum_value = 0.0
+        minimum_value = 0.0,
+        maximum_value = 50.0,
     })
 
 table.insert(settings,
@@ -29,6 +30,21 @@ table.insert(settings,
         setting_type = "startup",
         default_value = true,
     })
+
+local index = 0
+for item, default in pairs(item_decay_defaults) do
+    table.insert(settings,
+        {
+            type = "double-setting",
+            name = "spice-rack-decaying-goods-decay-"..item,
+            order = string.format("m[%03d]", index),
+            setting_type = "startup",
+            minimum_value = 0.0,
+            maximum_value = 99.0,
+            default_value = default
+        })
+    index = index + 1
+end
 
 -- primes
 --    2,     3,     5,     7,    11,    13,    17,    19,    23,    29,    31,    37,    41,    43,
@@ -72,7 +88,7 @@ table.insert(settings,
     {
         type = "int-setting",
         name = "spice-rack-decaying-goods-slot-count",
-        order = "d",
+        order = "x",
         setting_type = "startup",
         default_value = 719,
         allowed_values = {61, 179, 359, 719, 1801, 3607}
@@ -82,27 +98,11 @@ table.insert(settings,
     {
         type = "int-setting",
         name = "spice-rack-decaying-goods-interval",
-        order = "e",
+        order = "y",
         setting_type = "startup",
         default_value = 10,
         minimum_value = 1,
         maximum_value = 60,
     })
-
-
-local index = 0
-for item, default in pairs(item_decay_defaults) do
-    table.insert(settings,
-        {
-            type = "double-setting",
-            name = "spice-rack-decaying-goods-decay-"..item,
-            order = string.format("z[%03d]", index),
-            setting_type = "startup",
-            minimum_value = 0.0,
-            maximum_value = 99.0,
-            default_value = default
-        })
-    index = index + 1
-end
 
 data:extend(settings)

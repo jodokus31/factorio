@@ -116,6 +116,57 @@ end
 
 if settingsutil.get_startup_setting("flamethrower-change") then
     data.raw.technology['flamethrower'].unit.count = 200
+
+    local refined_flammables_modifiers = {
+        ['refined-flammables-1'] = 0.4, -- 0.2
+        ['refined-flammables-2'] = 0.5, -- 0.2
+        ['refined-flammables-3'] = 0.6, -- 0.2
+        ['refined-flammables-4'] = 0.8, -- 0.3
+        ['refined-flammables-5'] = 1.0, -- 0.3
+        ['refined-flammables-6'] = 1.2, -- 0.4
+        ['refined-flammables-7'] = 0.6, -- 0.2
+    }
+
+    for tech, modifier in pairs(refined_flammables_modifiers) do
+        for _, effect in pairs(data.raw.technology[tech].effects) do
+            if effect and effect.type == "ammo-damage" then
+                effect.modifier = modifier
+            elseif effect and effect.type == "turret-attack" then
+                effect.modifier = modifier
+            end
+        end
+    end
+
 end
 
 ------ << Flamethrower
+
+------ >> Gun turret
+
+if settingsutil.get_startup_setting("gun-turret-damage-change") then
+    
+    local damage_modifiers = {
+        ['physical-projectile-damage-1'] = { ammo=0.1, gun_turret=0.1,  longrange_turret=nil  }, -- 0.1, 0.1, 
+        ['physical-projectile-damage-2'] = { ammo=0.1, gun_turret=0.1,  longrange_turret=nil  }, -- 0.1, 0.1, 
+        ['physical-projectile-damage-3'] = { ammo=0.2, gun_turret=0.1,  longrange_turret=0.1  }, -- 0.2, 0.2, 0.2
+        ['physical-projectile-damage-4'] = { ammo=0.2, gun_turret=0.1,  longrange_turret=0.15 }, -- 0.2, 0.2, 0.25
+        ['physical-projectile-damage-5'] = { ammo=0.2, gun_turret=0.15, longrange_turret=0.15 }, -- 0.2, 0.2, 0.3
+        ['physical-projectile-damage-6'] = { ammo=0.4, gun_turret=0.15, longrange_turret=0.15 }, -- 0.4, 0.4, 0.45
+        ['physical-projectile-damage-7'] = { ammo=0.4, gun_turret=0.15, longrange_turret=0.20 }, -- 0.4, 0.7, 0.75
+    }
+
+    for tech, modifiers in pairs(damage_modifiers) do
+        for _, effect in pairs(data.raw.technology[tech].effects) do
+            if effect and effect.type == "ammo-damage" then
+                effect.modifier = modifiers.ammo or effect.modifier
+            elseif effect and effect.turret_id == "gun-turret" then
+                effect.modifier = modifiers.gun_turret or effect.modifier
+            elseif effect and effect.turret_id == "spice-rack-longrange-turret" then
+                effect.modifier = modifiers.longrange_turret or effect.modifier
+            end
+        end
+    end
+
+end
+
+------ << Gun turret

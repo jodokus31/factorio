@@ -1,99 +1,39 @@
-data:extend(
+local settings = {}
+
+local bool_settings =
 {
-    {
-        type = "bool-setting",
-        name = "spice-rack-longrange-turret",
-        order = "a",
-        setting_type = "startup",
-        default_value = true,
-        per_user = false,
-    },
-    {
-        type = "bool-setting",
-        name = "spice-rack-change-military3-research",
-        order = "b",
-        setting_type = "startup",
-        default_value = true,
-        per_user = false,
-    },
-    {
-        type = "bool-setting",
-        name = "spice-rack-change-military-research",
-        order = "c",
-        setting_type = "startup",
-        default_value = true,
-        per_user = false,
-    },
-    {
-        type = "bool-setting",
-        name = "spice-rack-shotgun-change",
-        order = "d",
-        setting_type = "startup",
-        default_value = true,
-        per_user = false,
-    },
-    {
-        type = "bool-setting",
-        name = "spice-rack-change-follower-robot-count",
-        order = "e",
-        setting_type = "startup",
-        default_value = true,
-        per_user = false,
-    },
-    {
-        type = "bool-setting",
-        name = "spice-rack-flamethrower-change",
-        order = "f",
-        setting_type = "startup",
-        default_value = true,
-        per_user = false,
-    },
-    {
-        type = "bool-setting",
-        name = "spice-rack-laser-change",
-        order = "g",
-        setting_type = "startup",
-        default_value = true,
-        per_user = false,
-    },
-    {
-        type = "bool-setting",
-        name = "spice-rack-landmine-change",
-        order = "h",
-        setting_type = "startup",
-        default_value = true,
-        per_user = false,
-    },
-    {
-        type = "bool-setting",
-        name = "spice-rack-spawner-change",
-        order = "i",
-        setting_type = "startup",
-        default_value = true,
-        per_user = false,
-    },
-    {
-        type = "bool-setting",
-        name = "spice-rack-tank-change",
-        order = "j",
-        setting_type = "startup",
-        default_value = true,
-        per_user = false,
-    },
-    {
-        type = "bool-setting",
-        name = "spice-rack-car-change",
-        order = "k",
-        setting_type = "startup",
-        default_value = true,
-        per_user = false,
-    },
-    {
-        type = "bool-setting",
-        name = "spice-rack-repair-pack-change",
-        order = "l",
-        setting_type = "startup",
-        default_value = true,
-        per_user = false,
-    },
-})
+    ["spice-rack-longrange-turret"] = true,
+    ["spice-rack-flamethrower-change"] = true,
+    ["spice-rack-laser-turret-change"] = true,
+    ["spice-rack-gun-turret-damage-change"] = true,
+    --["spice-rack-gun-turret-health-change"] = true,
+
+    ["spice-rack-landmine-change"] = true,
+    ["spice-rack-shotgun-change"] = true,
+    ["spice-rack-tank-change"] = true,
+    ["spice-rack-car-change"] = true,
+    ["spice-rack-repair-pack-change"] = true,
+
+    ["spice-rack-change-military3-research"] = true,
+    ["spice-rack-change-military-research"] = true,
+    ["spice-rack-change-follower-robot-count"] = true,
+
+    ["spice-rack-spawner-change"] = true,
+    ["spice-rack-biter-change"] = true,
+}
+
+local index = 0
+for name, default in pairs(bool_settings) do
+    table.insert(settings,
+        {
+            type = "bool-setting",
+            name = name,
+            order = string.format("a[%03d]", index),
+            setting_type = "startup",
+            default_value = default,
+            per_user = false,
+        })
+    index = index + 1
+end
+
+data:extend(settings)
