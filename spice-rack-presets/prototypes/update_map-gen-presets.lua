@@ -103,7 +103,7 @@ end
 
 data.raw["map-gen-presets"].default["spice-rack-rail-world"] =
     {
-        order = "z[spice-rack]-a[rail-world]",
+        order = "z[spice-rack]-aa[rail-world]",
         basic_settings =
         {
             property_expression_names = {},
@@ -128,9 +128,13 @@ data.raw["map-gen-presets"].default["spice-rack-rail-world"] =
         }
     }
 
+create_small_but_rich("spice-rack-rail-world", "spice-rack-rail-world-sbr", "z[spice-rack]-ab[rail-world-sbr]")
+create_marathon("spice-rack-rail-world", "spice-rack-rail-world-marathon", "z[spice-rack]-ac[rail-world-marathon]", "normal")
+create_small_but_rich("spice-rack-rail-world-marathon", "spice-rack-rail-world-marathon-sbr", "z[spice-rack]-ad[rail-world-marathon-sbr]")
+
 data.raw["map-gen-presets"].default["spice-rack-death-rail-world"] =
     {
-        order = "z[spice-rack]-b[death-rail-world]",
+        order = "z[spice-rack]-ba[death-rail-world]",
         basic_settings =
         {
             property_expression_names = {},
@@ -157,17 +161,9 @@ data.raw["map-gen-presets"].default["spice-rack-death-rail-world"] =
         }
     }
 
-create_marathon("spice-rack-rail-world", "spice-rack-rail-world-marathon", "z[spice-rack]-c[rail-world-marathon]", "normal")
-create_marathon("spice-rack-death-rail-world", "spice-rack-death-rail-world-marathon", "z[spice-rack]-d[death-rail-world-marathon]", "deathworld")
+create_small_but_rich("spice-rack-death-rail-world", "spice-rack-death-rail-world-sbr", "z[spice-rack]-bb[death-rail-world-sbr]")
+create_marathon("spice-rack-death-rail-world", "spice-rack-death-rail-world-marathon", "z[spice-rack]-bc[death-rail-world-marathon]", "deathworld")
+create_small_but_rich("spice-rack-death-rail-world-marathon", "spice-rack-death-rail-world-marathon-sbr", "z[spice-rack]-bd[death-rail-world-marathon-sbr]")
 
---------------- >> small but rich
-
-create_small_but_rich("spice-rack-rail-world", "spice-rack-rail-world-sbr", "z[spice-rack]-e[rail-world-sbr]")
-create_small_but_rich("spice-rack-death-rail-world", "spice-rack-death-rail-world-sbr", "z[spice-rack]-f[death-rail-world-sbr]")
-
-create_small_but_rich("spice-rack-rail-world-marathon", "spice-rack-rail-world-marathon-sbr", "z[spice-rack]-g[rail-world-marathon-sbr]")
-create_small_but_rich("spice-rack-death-rail-world-marathon", "spice-rack-death-rail-world-marathon-sbr", "z[spice-rack]-h[death-rail-world-marathon]")
-
---------------- << small but rich
 
 
