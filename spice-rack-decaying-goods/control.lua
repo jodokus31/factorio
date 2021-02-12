@@ -83,7 +83,7 @@ local function updateContainers()
                     end
                 end
             else
-                logger.warning("entity is not valid")
+                logger.warn("entity is not valid")
             end
         end
     end
