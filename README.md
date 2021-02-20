@@ -132,7 +132,7 @@ Improve shotgun (more near damage, projectiles spread wider, character moves a b
 Follower robot count researches are less expensive
 
 ### Flamethrower
-The flamethrower turret consumes 5 times more oil and has less base damage. The refined flammable research adds more damage as compensation.\
+The flamethrower turret consumes 3 times more oil and has lot less base damage. The refined flammable research adds more % damage as compensation to let it get stronger in end game.\
 Crude oil has only 50% damage, heavy oil 70% and light oil 100%.\
 The flamethrower research is more expensive.\
 The flamethrower ammo also has less base damage and needs light oil instead of crude oil.
@@ -153,7 +153,11 @@ Gun turrets (and the new long range turret) profit less from physical damage res
 Gun turret health gets increased to be less fragile
 
 ### Landmines
-Landmines are twice as expensive and base damage is reduced from 250 to 150.\nArming timeout has increased from 2 to 5 sec. and the stun time is reduced from 3 to 1.5 sec.
+Landmines have reduced base damage from 250 to 75 and smaller aoe damage radius (5 instead of 6).\
+The stronger explosives research add more % damange as compensation to let it get stronger in end game\
+Arming timeout has increased from 2 to 5 sec. to reduce offensive effectiveness.\
+The stun time is reduced from 3 to 1.5 sec. but after that, the affected enemy is a lot slower for additional 2.5 sec.\
+The trigger area is reduced and the hitboxes are a bit smaller to allow placing them denser.
 
 ### Tank
 Improve tank (more hitpoints, weight and impact), but its more expensive

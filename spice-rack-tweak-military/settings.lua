@@ -20,6 +20,8 @@ local bool_settings =
 
     ["spice-rack-spawner-change"] = true,
     ["spice-rack-biter-change"] = true,
+
+    ["spice-rack-rock-change"] = true,
 }
 
 local index = 0

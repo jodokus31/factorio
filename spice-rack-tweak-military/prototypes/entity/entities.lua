@@ -53,10 +53,20 @@ if settingsutil.get_startup_setting("landmine-change") then
     data:extend({
         {
             type = "sticker",
-            name = "spice-rack-middle-stun-sticker",
+            name = "spice-rack-landmine-stun-sticker",
             flags = {"not-on-map"},
             duration_in_ticks = 1.5*60,
             target_movement_modifier = 0
+        },
+    })
+
+    data:extend({
+        {
+            type = "sticker",
+            name = "spice-rack-landmine-slowdown-sticker",
+            flags = {"not-on-map"},
+            duration_in_ticks = 4*60,
+            target_movement_modifier = 0.3
         },
     })
 end

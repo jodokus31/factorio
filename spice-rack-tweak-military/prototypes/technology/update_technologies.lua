@@ -119,12 +119,12 @@ if settingsutil.get_startup_setting("flamethrower-change") then
 
     local refined_flammables_modifiers = {
         ['refined-flammables-1'] = 0.4, -- 0.2
-        ['refined-flammables-2'] = 0.5, -- 0.2
+        ['refined-flammables-2'] = 0.4, -- 0.2
         ['refined-flammables-3'] = 0.6, -- 0.2
         ['refined-flammables-4'] = 0.8, -- 0.3
-        ['refined-flammables-5'] = 1.0, -- 0.3
-        ['refined-flammables-6'] = 1.2, -- 0.4
-        ['refined-flammables-7'] = 0.6, -- 0.2
+        ['refined-flammables-5'] = 0.8, -- 0.3
+        ['refined-flammables-6'] = 1.0, -- 0.4
+        ['refined-flammables-7'] = 0.4, -- 0.2
     }
 
     for tech, modifier in pairs(refined_flammables_modifiers) do
@@ -132,6 +132,31 @@ if settingsutil.get_startup_setting("flamethrower-change") then
             if effect and effect.type == "ammo-damage" then
                 effect.modifier = modifier
             elseif effect and effect.type == "turret-attack" then
+                effect.modifier = modifier
+            end
+        end
+    end
+
+end
+
+------ << Flamethrower
+
+------ >> Landmine
+
+if settingsutil.get_startup_setting("landmine-change") then
+    
+    local stronger_explosives_landmine_modifiers = {
+        ['stronger-explosives-2'] = 0.3, -- 0.2
+        ['stronger-explosives-3'] = 0.3, -- 0.2
+        ['stronger-explosives-4'] = 0.5, -- 0.2
+        ['stronger-explosives-5'] = 0.7, -- 0.2
+        ['stronger-explosives-6'] = 0.7, -- 0.2
+        ['stronger-explosives-7'] = 0.5, -- 0.2
+    }
+
+    for tech, modifier in pairs(stronger_explosives_landmine_modifiers) do
+        for _, effect in pairs(data.raw.technology[tech].effects) do
+            if effect and effect.type == "ammo-damage" and effect.ammo_category == "landmine" then
                 effect.modifier = modifier
             end
         end

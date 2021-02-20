@@ -64,13 +64,15 @@ if settingsutil.get_startup_setting("flamethrower-change") then
     -- longer, but lot less damage
     data.raw.sticker['fire-sticker'].duration_in_ticks = 60 * 60
     data.raw.sticker['fire-sticker'].damage_per_tick = { amount = 10 * 10 / 60, type = "fire" }
+    data.raw.sticker['fire-sticker'].target_movement_modifier = 0.7
 
     -- type = "fire",
     -- name = "fire-flame",
     -- damage_per_tick = {amount = 13 / 60, type = "fire"},
 
-    -- small biters and spitters are not instantly killed by fire on the ground
-    data.raw.fire['fire-flame'].damage_per_tick = {amount = 3 / 60, type = "fire"}
+    data.raw.fire['fire-flame'].damage_per_tick = {amount = 5 / 60, type = "fire"}
+    data.raw.fire['fire-flame'].maximum_damage_multiplier = 3
+    data.raw.fire['fire-flame'].damage_multiplier_increase_per_added_fuel = 0.3
 
 
     -- type = "stream",
@@ -115,6 +117,56 @@ if settingsutil.get_startup_setting("flamethrower-change") then
             if effect then
                 effect.damage.amount = 0.5 -- original 2 == 60
             end
+        end
+    end
+
+    -- type = "construction-robot",
+    -- name = "construction-robot",
+    -- icon = "__base__/graphics/icons/construction-robot.png",
+    -- icon_size = 64, icon_mipmaps = 4,
+    -- flags = {"placeable-player", "player-creation", "placeable-off-grid", "not-on-map"},
+    -- minable = {mining_time = 0.1, result = "construction-robot"},
+    -- resistances =
+    -- {
+    --   {
+    --     type = "fire",
+    --     percent = 85
+    --   }
+    -- },
+
+    do 
+        data.raw["construction-robot"]["construction-robot"].hide_resistances = false
+        local _, fire_resistance = tableutil.find(
+            data.raw["construction-robot"]["construction-robot"].resistances,
+            function (r) return r and r.type == "fire" end)
+        
+        if fire_resistance then
+            fire_resistance.percent = 100
+        end
+    end
+
+    do 
+        local pipes = {
+            data.raw["pipe"]["pipe"],
+            data.raw["pipe-to-ground"]["pipe-to-ground"]
+        }
+
+        for _, pipe in pairs(pipes) do 
+            
+            pipe.hide_resistances = false
+            local _, fire_resistance = tableutil.find(
+                pipe.resistances,
+                function (r) return r and r.type == "fire" end)
+            
+            if fire_resistance then
+                fire_resistance.percent = 100
+            end
+
+            tableutil.add(pipe.resistances,
+                {
+                    type = "acid",
+                    percent = 80,
+                })
         end
     end
 end
@@ -230,14 +282,23 @@ if settingsutil.get_startup_setting("landmine-change") then
 --   },
     -- arming timout: default 2*60 -> 2 sec.
     data.raw['land-mine']['land-mine'].timeout = 5*60 -- 5 sec.
-
+    data.raw['land-mine']['land-mine'].collision_box = {{-0.35,-0.35}, {0.35, 0.35}}
+    data.raw['land-mine']['land-mine'].resistances =
+    {
+        {
+            type = "fire",
+            percent = 100
+        }
+    }
+    data.raw['land-mine']['land-mine'].trigger_radius = 1.5
+    
     local damage_effect_index, damage_effect = tableutil.find(
         data.raw['land-mine']['land-mine'].action.action_delivery.source_effects,
         function (a) return a and a.type == "damage" end)
 
     if damage_effect_index >= 0 then
         -- i don't know, what this damage does, but i reduce it anyway
-        damage_effect.damage.amount = 600
+        damage_effect.damage.amount = 300
     end
 
     local nested_effect_index, nested_effect = tableutil.find(
@@ -246,15 +307,14 @@ if settingsutil.get_startup_setting("landmine-change") then
 
     if nested_effect_index >= 0 then
 
-        --nested_effect.action.radius = 6
+        nested_effect.action.radius = 5
 
         local area_damage_effect_index, area_damage_effect = tableutil.find(
             nested_effect.action.action_delivery.target_effects,
             function (a) return a and a.type == "damage" end)
         
         if area_damage_effect_index >= 0 then
-            -- 3 mines take down a big biter, and 2 for a big-spitter
-            area_damage_effect.damage.amount = 150
+            area_damage_effect.damage.amount = 75
         end
 
         local stun_effect_index, stun_effect_effect = tableutil.find(
@@ -262,8 +322,14 @@ if settingsutil.get_startup_setting("landmine-change") then
             function (a) return a and a.type == "create-sticker" end)
         
         if stun_effect_index >= 0 then
-            stun_effect_effect.sticker = "spice-rack-middle-stun-sticker"
+            stun_effect_effect.sticker = "spice-rack-landmine-stun-sticker"
         end
+
+        table.insert(nested_effect.action.action_delivery.target_effects,
+                {
+                    type = "create-sticker",
+                    sticker = "spice-rack-landmine-slowdown-sticker"
+                })
     end
 end
 ------ << Landmine
@@ -702,3 +768,25 @@ if settingsutil.get_startup_setting("biter-change") then
 
 end
 ------ >> Biters
+
+------ >> Rock change
+if settingsutil.get_startup_setting("rock-change") then
+
+    -- name = "rock-huge",
+    -- type = "simple-entity",
+    -- ...
+    -- minable =
+    -- {
+    --   mining_particle = "stone-particle",
+    --   mining_time = 3,
+    --   results = {{name = "stone", amount_min = 24, amount_max = 50}, {name = "coal", amount_min = 24, amount_max = 50}},
+    -- },
+
+    data.raw['simple-entity']['rock-huge'].minable.results = 
+        {
+            { name = "stone", amount_min = 37, amount_max = 37}, 
+            { name = "coal",  amount_min = 37, amount_max = 37},
+        }
+    
+end
+------ << Rock change

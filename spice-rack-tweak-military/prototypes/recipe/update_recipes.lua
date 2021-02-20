@@ -3,7 +3,7 @@ local tableutil = require('__spice-rack-core__/util/tableutil')
 
 ------ >> Landmine
 
-if settingsutil.get_startup_setting("landmine-change") then
+-- if settingsutil.get_startup_setting("landmine-change") then
     -- {
     --     type = "recipe",
     --     name = "land-mine",
@@ -14,8 +14,12 @@ if settingsutil.get_startup_setting("landmine-change") then
     --     },
     -- },
 
-    data.raw.recipe['land-mine'].ingredients = { {"steel-plate", 2}, {"explosives", 4} }
-end
+    --data.raw.recipe['land-mine'].ingredients = { {"steel-plate", 2}, {"explosives", 4} }
+-- end
+
+------ << Landmine
+
+------ >> Flamethrower ammo
 
 if settingsutil.get_startup_setting("flamethrower-change") then
     -- type = "recipe",
@@ -36,7 +40,7 @@ if settingsutil.get_startup_setting("flamethrower-change") then
     }
 end
 
------- << Landmine
+------ << Flamethrower ammo
 
 ------ >> Tank
 if settingsutil.get_startup_setting("tank-change") then
