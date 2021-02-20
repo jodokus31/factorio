@@ -2,7 +2,12 @@ local function make_resource_small_rich(autoplace_controls, resource)
     if resource == "enemy-base" then
         -- don't change enemies
     elseif resource == "crude-oil" then
-        -- don't change oil
+        -- oil is still big but not rich.
+        autoplace_controls[resource] = {
+                frequency = 0.16666666666,
+                size = 4,
+                richness = 0.5,
+            }
     elseif resource == "uranium-ore" then
         autoplace_controls[resource] = {
                 frequency = 0.16666666666,
@@ -57,32 +62,38 @@ local function create_rail_autoplace_controls(mode)
         ["iron-ore"] =
         {
             frequency = 0.16666666666,
-            size = 3
+            size = 2,
+            richness = 1,
         },
         ["copper-ore"] =
         {
             frequency = 0.16666666666,
-            size = 3
+            size = 2,
+            richness = 1,
         },
         coal =
         {
             frequency = 0.16666666666,
-            size = 3
+            size = 2,
+            richness = 1,
         },
         stone =
         {
             frequency = 0.16666666666,
-            size = 3
+            size = 2,
+            richness = 1,
         },
         ["uranium-ore"] =
         {
             frequency = 0.16666666666,
-            size = 1
+            size = 1,
+            richness = 1,
         },
         ["crude-oil"] =
         {
             frequency = 0.16666666666,
-            size = 2
+            size = 4,
+            richness = 0.5,
         },
         ["enemy-base"] =
         {
