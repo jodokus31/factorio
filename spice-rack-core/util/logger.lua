@@ -40,6 +40,15 @@ function Logger.log(severity, text, print_to_console)
         logtext = severity_text .. ": " .. logtext 
     end
 
+    local info = debug.getinfo(3, "Sl")
+    if info then
+        local filename = info.short_src:match("__.*__/(.*)")
+        logtext = string.format("%s(%d): %s",
+            filename,
+            info.currentline,
+            logtext)
+    end
+
     log(logtext)
     if print_to_console and game and game.print then
         game.print(logtext)
