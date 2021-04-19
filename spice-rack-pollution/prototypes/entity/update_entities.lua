@@ -31,7 +31,7 @@ if settingsutil.get_startup_setting("furnace-change") then
     -- }
     -- energy_usage = "90kW"
 
-    data.raw['furnace']['stone-furnace'].energy_usage = "125kW"
+    data.raw['furnace']['stone-furnace'].energy_usage = "150kW"
     data.raw['furnace']['stone-furnace'].energy_source.emissions_per_minute = 2.8
 
     -- name = "steel-furnace",
@@ -41,7 +41,7 @@ if settingsutil.get_startup_setting("furnace-change") then
     --     emissions_per_minute = 4,
     -- }
 
-    data.raw['furnace']['steel-furnace'].energy_usage = "175kW"
+    data.raw['furnace']['steel-furnace'].energy_usage = "210kW"
     data.raw['furnace']['steel-furnace'].energy_source.emissions_per_minute = 4
 
     -- name = "electric-furnace",
@@ -57,7 +57,7 @@ if settingsutil.get_startup_setting("furnace-change") then
     --     module_info_icon_shift = {0, 0.8}
     -- },
 
-    data.raw['furnace']['electric-furnace'].energy_usage = "350kW"
+    data.raw['furnace']['electric-furnace'].energy_usage = "400kW"
     data.raw['furnace']['electric-furnace'].crafting_speed = 3
     data.raw['furnace']['electric-furnace'].energy_source.emissions_per_minute = 1.5
     data.raw['furnace']['electric-furnace'].module_specification.module_slots = 3
