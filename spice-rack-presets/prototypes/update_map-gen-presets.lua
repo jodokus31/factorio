@@ -14,6 +14,12 @@ local function make_resource_small_rich(autoplace_controls, resource)
                 size = 0.5,
                 richness = 2,
             }
+    elseif resource == "coal" then
+        autoplace_controls[resource] = {
+                frequency = 0.16666666666,
+                size = 1,
+                richness = 3,
+            }
     else
         autoplace_controls[resource] = {
                 frequency = 0.16666666666,
@@ -22,6 +28,7 @@ local function make_resource_small_rich(autoplace_controls, resource)
             }
     end
 end
+
 local function create_small_but_rich(template_name, new_name, order)
     
     local small_but_rich = util.table.deepcopy(data.raw["map-gen-presets"].default[template_name])
@@ -74,7 +81,7 @@ local function create_rail_autoplace_controls(mode)
         coal =
         {
             frequency = 0.16666666666,
-            size = 2,
+            size = 3,
             richness = 1,
         },
         stone =
@@ -175,6 +182,3 @@ data.raw["map-gen-presets"].default["spice-rack-death-rail-world"] =
 create_small_but_rich("spice-rack-death-rail-world", "spice-rack-death-rail-world-sbr", "z[spice-rack]-bb[death-rail-world-sbr]")
 create_marathon("spice-rack-death-rail-world", "spice-rack-death-rail-world-marathon", "z[spice-rack]-bc[death-rail-world-marathon]", "deathworld")
 create_small_but_rich("spice-rack-death-rail-world-marathon", "spice-rack-death-rail-world-marathon-sbr", "z[spice-rack]-bd[death-rail-world-marathon-sbr]")
-
-
-
