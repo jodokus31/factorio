@@ -97,7 +97,6 @@ end
 
 function Containers.handleRemoveContainer(args)
     local entity = args.entity
-    --Containers.logger.info("handleRemoveContainer :" .. tostring(entity.valid))
     if entity and entity.valid then
         Containers.removeContainer(entity)
     end

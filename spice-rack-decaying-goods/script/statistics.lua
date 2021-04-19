@@ -10,19 +10,20 @@ function Statistics.resetStatistics()
 end
 
 function Statistics.copyStatistics()
-    if global.SpiceRack_Statistics.ItemStatisticsRunning then
-        
-        global.SpiceRack_Statistics.ItemStatistics = table.deepcopy(global.SpiceRack_Statistics.ItemStatisticsRunning)
-        
-        for _, stat in pairs(global.SpiceRack_Statistics.ItemStatisticsRunning) do
-            -- reset some values every "round"
-            stat.current_amount = 0
-            stat.container_count = 0
-            stat.fill_factor_sum = 0
-        end
-    else
+    if not global.SpiceRack_Statistics.ItemStatisticsRunning then
+        -- setup on first round ever
         global.SpiceRack_Statistics.ItemStatisticsRunning = {}
+        return
     end
+        
+    global.SpiceRack_Statistics.ItemStatistics = table.deepcopy(global.SpiceRack_Statistics.ItemStatisticsRunning)
+    
+    for _, stat in pairs(global.SpiceRack_Statistics.ItemStatisticsRunning) do
+        -- reset only "some" values every "round". Others are stay intact.
+        stat.current_amount = 0
+        stat.container_count = 0
+        stat.fill_factor_sum = 0
+    end 
 end
 
 function Statistics.updateStatistics(itemname, new_count_ceiling, new_fraction, int_diff, max_decay_factor, per_hour_exponent, fill_factor)
@@ -57,23 +58,25 @@ function Statistics.logStatistics(nextUpdateInSec)
         Statistics.logger.manual(
             string.format("no item statistics yet, wait for next update in ~%0.2f sec.", nextUpdateInSec),
             true)
-    else
-        Statistics.logger.manual("item statistics:", true)
-
-        for itemname, _ in pairs(item_decay_defaults) do
-            local stat = global.SpiceRack_Statistics.ItemStatistics[itemname]
-            if stat then
-                Statistics.logger.manual(
-                    string.format("%s (%d): amount: %d, overall_decayed: %d, fraction: %0.6f, max decay: %0.4f%% in %0.2f sec. (avg fill_factor %0.2f%%)",
-                        itemname, stat.container_count, stat.current_amount, stat.overall_decayed, stat.current_fraction, (1 - stat.max_decay_factor) * 100, stat.per_hour_exponent*60*60, stat.fill_factor_sum*100/stat.container_count),
-                    true)
-            end
-        end
-
-        Statistics.logger.manual(
-            string.format("next update in ~%0.2f sec.", nextUpdateInSec),
-            true)
+        return
     end
+
+    Statistics.logger.manual("item statistics:", true)
+
+    for itemname, _ in pairs(item_decay_defaults) do
+        local stat = global.SpiceRack_Statistics.ItemStatistics[itemname]
+        if stat then
+            Statistics.logger.manual(
+                string.format("%s (%d): amount: %d, overall_decayed: %d, fraction: %0.6f, max decay: %0.4f%% in %0.2f sec. (avg fill_factor %0.2f%%)",
+                    itemname, stat.container_count, stat.current_amount, stat.overall_decayed, stat.current_fraction, 
+                    (1 - stat.max_decay_factor) * 100, stat.per_hour_exponent*60*60, stat.fill_factor_sum*100/stat.container_count),
+                true)
+        end
+    end
+
+    Statistics.logger.manual(
+        string.format("next update in ~%0.2f sec.", nextUpdateInSec),
+        true)
 end
 
 return Statistics
