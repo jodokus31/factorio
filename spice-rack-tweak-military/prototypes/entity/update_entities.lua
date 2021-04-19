@@ -378,7 +378,7 @@ if settingsutil.get_startup_setting("car-change") then
     tableutil.add(data.raw['car']['car'].resistances,
         {
             type = "physical",
-            decrease = 4,
+            decrease = 3,
             percent = 30
         },
         {
