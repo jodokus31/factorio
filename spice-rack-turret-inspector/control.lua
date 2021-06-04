@@ -67,3 +67,8 @@ end)
 commands.add_command("spice_rack_active_turrets", "displays all turrets", function()
     turrets.logActiveTurrets(function (text) logger.manual(text, true) end)
 end)
+
+commands.add_command("spice_rack_rebuild_turrets", "rebuild turrets lists", function()
+    turrets.rebuildTurrets()
+    logger.manual("turrets rebuilt", true)
+end)

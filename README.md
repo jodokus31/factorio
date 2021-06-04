@@ -39,7 +39,6 @@ Heavy and light oil cracking uses steam instead of water
 Solid fuel acceleration is 140%
 
 
-
 ## The Spice Rack - Pollution
 Change effectivity modules and furnaces/drills to increase difficulty due to pollution
 
@@ -58,7 +57,6 @@ The stone furnace consumes more fuel and produces more pollution.\
 The steel furnace consumes even more fuel, but pollution is like vanilla.\
 The electric furnace is 1.5 times faster and produces more pollution accordingly. Power usage is higher, but it has 3 module slots.\
 The burner mining drill is worse and produces more pollution and consumes more fuel
-
 
 
 ## The Spice Rack - Presets
@@ -107,9 +105,8 @@ The steel furnace just needs additional steel.\
 The electric furnace needs additional concrete instead of bricks (less steel compared to vanilla)
 
 ### Rocket silo
-The rocket silo research needs additional military science.\nThe rocket silo needs refined concrete instead of concrete and a programmable speaker
-
-
+The rocket silo research needs additional military science.\
+The rocket silo needs refined concrete instead of concrete and a programmable speaker
 
 ## The Spice Rack - Tweak Military
 Several minor military balancing changes. (turrets, tanks, shotgun, research, damage, cost, ...)
@@ -117,19 +114,6 @@ Several minor military balancing changes. (turrets, tanks, shotgun, research, da
 ### Long range gun turret
 New long range gun turret (similar to the range of laser turret) with slower shooting speed\
 It has lower DPS than a normal gun turret, but benefits more from damage upgrades
-
-### Military 3 research
-Military 3 research does not require chemical science pack. Same for new long range turret research
-
-### Early military upgrade researches
-Physical projectile damage 3 and Weapon shooting speed 3 has shorter research time (45 instead of 60).\
-Weapon shooting speed is a bit less expensive for tier 1, 2 and 3 
-
-### Shotgun
-Improve shotgun (more near damage, projectiles spread wider, character moves a bit faster while shooting). It has a bit of aoe damage directly in front and a small pushback
-
-### Follower robot count
-Follower robot count researches are less expensive
 
 ### Flamethrower
 The flamethrower turret consumes 3 times more oil and has lot less base damage. The refined flammable research adds more % damage as compensation to let it get stronger in end game.\
@@ -140,17 +124,9 @@ The flamethrower ammo also has less base damage and needs light oil instead of c
 ### Laser turrets
 The laser turret has more drain (60kW instead of 24kW)
 
-### Spawners
-Spawners are harder to kill (more health, more self healing, addtional laser and impact resistances)
-
-### Biters
-Big and behemoth biters have additional laser resistance.
-
 ### Gun turret damage research
 Gun turrets (and the new long range turret) profit less from physical damage research to reduce their insane DPS in late game
 
-### Gun turret health
-Gun turret health gets increased to be less fragile
 
 ### Landmines
 Landmines have reduced base damage from 250 to 75 and smaller aoe damage radius (5 instead of 6).\
@@ -158,6 +134,9 @@ The stronger explosives research add more % damange as compensation to let it ge
 Arming timeout has increased from 2 to 5 sec. to reduce offensive effectiveness.\
 The stun time is reduced from 3 to 1.5 sec. but after that, the affected enemy is a lot slower for additional 2.5 sec.\
 The trigger area is reduced and the hitboxes are a bit smaller to allow placing them denser.
+
+### Shotgun
+Improve shotgun (more near damage, projectiles spread wider, character moves a bit faster while shooting). It has a bit of aoe damage directly in front and a small pushback
 
 ### Tank
 Improve tank (more hitpoints, weight and impact), but its more expensive
@@ -169,6 +148,26 @@ Improve car (more hitpoints and resistances)
 Repair pack is more expensive
 
 
+### Military 3 research
+Military 3 research does not require chemical science pack. Same for new long range turret research
+
+### Early military upgrade researches
+Physical projectile damage 3 and Weapon shooting speed 3 has shorter research time (45 instead of 60).\
+Weapon shooting speed is a bit less expensive for tier 1, 2 and 3 
+
+### Follower robot count
+Follower robot count researches are less expensive
+
+
+### Spawners
+Spawners are harder to kill (more health, more self healing, addtional laser and impact resistances)
+
+### Biters
+Big and behemoth biters have additional laser resistance.
+
+
+### Rock change
+Huge rocks yield between 35 and 40 of coal/stone
 
 
 ## The Spice Rack - Decaying goods
@@ -201,6 +200,24 @@ Debug mode for decaying goods - 0=off, 1=errors only, 2=errors and warning, 3=ad
 ## The Spice Rack - Time display
 Simple Time display similar to playtime mod by thuejk. (Credits to thuejk for looking up code)
 
+## The Spice Rack - Turret Inspector
+The ammo levels of gun turrets are getting inspected:
+If ammo is equal or below a player defined mark (default: 8) a grey warning is shown on map.
+If ammo gets empty a red warning is shown on map
+
+### Commands
+There are some command line commands:\
+/spice_rack_active_turrets - displays a technical overview over turrets\
+/spice_rack_rebuild_turrets - rebuild turrets lists\
+
+### Options
+Show turrets warnings - If disabled, no warnings are shown at all for current player\
+Low ammo indicator - If ammo is lower or equal this value, the turret is marked grey
+
+### Technical background
+The mods keeps track over all placed turrets and investigates the inventory. \
+\
+To ensure performance, the turrets are handled not all at once, but they are distributed over a timespan of ~10 sec. When a turret is added, it's assign to an alternating slot. One slot is handled each interval of 26 ticks. The amount of slots is a prime value: 23. 26*23 ticks ->  598 ticks ~ 2 min.
 
 ## The Spice Rack - Core
 Core functions for Spice Rack

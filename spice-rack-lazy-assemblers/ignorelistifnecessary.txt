@@ -1,0 +1,39 @@
+If its neccessary, this conflicting mods could be added to dependencies
+
+"! angelsindustries",
+"! angelspetrochem",
+"! angelsrefining",
+"! angelssmelting",
+
+"! bobelectronics",
+"! bobores",
+"! bobplates",
+"! bobpower",
+"! bobrevamp",
+"! bobtech",
+"! bobvehicleequipment",
+"! bobwarfare",
+
+"! space-exploration",
+
+"! Krastorio2",
+
+"! Yuoki",
+
+"! pycoalprocessing",
+"! pyindustry",
+"! pyhightech",
+
+"! FactorioExtended-Core",
+"! FactorioExtended-Plus-Core",
+
+"! IndustrialRevolution",
+"! IndustrialRevolution2",
+
+"! MoreScience",
+"! MoreSciencePacks",
+
+"! SeaBlock",    
+"! PyBlock",
+
+"! omnimatter"

@@ -784,8 +784,8 @@ if settingsutil.get_startup_setting("rock-change") then
 
     data.raw['simple-entity']['rock-huge'].minable.results = 
         {
-            { name = "stone", amount_min = 37, amount_max = 37}, 
-            { name = "coal",  amount_min = 37, amount_max = 37},
+            { name = "stone", amount_min = 35, amount_max = 40}, 
+            { name = "coal",  amount_min = 35, amount_max = 40},
         }
     
 end
