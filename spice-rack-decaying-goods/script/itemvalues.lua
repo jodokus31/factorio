@@ -6,7 +6,7 @@ ItemValues.logger = nil
 ItemValues.settingswrapper = nil
 
 function ItemValues.rebuildItemValues()
-    global.SpiceRack_ItemValues = {}
+    global.SpiceRack_Decaying_Goods_ItemValues = {}
 end
 
 function ItemValues.readItemValues(itemname)
@@ -34,9 +34,9 @@ function ItemValues.readItemValues(itemname)
 end
 
 function ItemValues.lookupItemValues(itemname)
-    global.SpiceRack_ItemValues[itemname] = global.SpiceRack_ItemValues[itemname] or ItemValues.readItemValues(itemname)
+    global.SpiceRack_Decaying_Goods_ItemValues[itemname] = global.SpiceRack_Decaying_Goods_ItemValues[itemname] or ItemValues.readItemValues(itemname)
     
-    return global.SpiceRack_ItemValues[itemname]
+    return global.SpiceRack_Decaying_Goods_ItemValues[itemname]
 end
 
 return ItemValues

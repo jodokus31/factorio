@@ -7,23 +7,23 @@ Containers.logger = nil
 Containers.settingswrapper = nil
 
 function Containers.addContainer(entity)
-    global.SpiceRack_Containers[entity.unit_number] = 
+    global.SpiceRack_Decaying_Goods_Containers[entity.unit_number] = 
     { 
         entity = entity
     }
-    tableutil.add(global.SpiceRack_SlotToUnitNumbers[global.SpiceRack_AddSlot], entity.unit_number)
+    tableutil.add(global.SpiceRack_Decaying_Goods_SlotToUnitNumbers[global.SpiceRack_Decaying_Goods_AddSlot], entity.unit_number)
     
-    Containers.logger.info("add container " .. entity.unit_number .. " in slot " .. global.SpiceRack_AddSlot)
+    Containers.logger.info("add container " .. entity.unit_number .. " in slot " .. global.SpiceRack_Decaying_Goods_AddSlot)
 
-    global.SpiceRack_AddSlot = (global.SpiceRack_AddSlot + constants.SLOT_STEP) % Containers.settingswrapper.slot_count
+    global.SpiceRack_Decaying_Goods_AddSlot = (global.SpiceRack_Decaying_Goods_AddSlot + constants.SLOT_STEP) % Containers.settingswrapper.slot_count
 end
 
 function Containers.removeContainer(entity)
-    table.remove(global.SpiceRack_Containers, entity.unit_number)
+    table.remove(global.SpiceRack_Decaying_Goods_Containers, entity.unit_number)
 
     local found_slot = nil
     local found_index = nil
-    for slot, unit_numbers in pairs(global.SpiceRack_SlotToUnitNumbers) do
+    for slot, unit_numbers in pairs(global.SpiceRack_Decaying_Goods_SlotToUnitNumbers) do
         found_index = tableutil.find(unit_numbers, function(u) return u == entity.unit_number end)
         if found_index then
             found_slot = slot
@@ -32,7 +32,7 @@ function Containers.removeContainer(entity)
     end
 
     if found_slot and found_index then
-        table.remove(global.SpiceRack_SlotToUnitNumbers[found_slot], found_index)
+        table.remove(global.SpiceRack_Decaying_Goods_SlotToUnitNumbers[found_slot], found_index)
         Containers.logger.info("remove container " .. entity.unit_number .. " in slot " .. found_slot)
     else
         Containers.logger.warn("remove container not found " .. entity.unit_number)
@@ -41,14 +41,14 @@ end
 
 
 function Containers.rebuildContainers()
-    global.SpiceRack_Containers = {}
+    global.SpiceRack_Decaying_Goods_Containers = {}
         
-    global.SpiceRack_SlotToUnitNumbers = {}
+    global.SpiceRack_Decaying_Goods_SlotToUnitNumbers = {}
     for i = 0, Containers.settingswrapper.slot_count - 1, 1 do
-        global.SpiceRack_SlotToUnitNumbers[i] = {}
+        global.SpiceRack_Decaying_Goods_SlotToUnitNumbers[i] = {}
     end
     
-    global.SpiceRack_AddSlot = 0
+    global.SpiceRack_Decaying_Goods_AddSlot = 0
 
     for _, surface in pairs(game.surfaces) do
         local containers = surface.find_entities_filtered { type = {"container", "logistic-container"}}
@@ -64,7 +64,7 @@ function Containers.logActiveContainers(logFunc)
     local count_sum = 0
     logFunc("active containers:")
     for slot = 0, Containers.settingswrapper.slot_count - 1, 1 do
-        local unit_numbers = global.SpiceRack_SlotToUnitNumbers[slot]
+        local unit_numbers = global.SpiceRack_Decaying_Goods_SlotToUnitNumbers[slot]
         local parts = ""
         local count = 0
         for _, unit_number in pairs(unit_numbers) do
@@ -80,9 +80,9 @@ end
 function Containers.getContainersToUpdate(slot)
     local list = {}
     
-    local unit_numbers_to_update = global.SpiceRack_SlotToUnitNumbers[slot]
+    local unit_numbers_to_update = global.SpiceRack_Decaying_Goods_SlotToUnitNumbers[slot]
     for _, unit_number in pairs(unit_numbers_to_update) do 
-        local container = global.SpiceRack_Containers[unit_number]
+        local container = global.SpiceRack_Decaying_Goods_Containers[unit_number]
         table.insert(list, container)
     end
     return list

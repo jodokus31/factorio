@@ -4,21 +4,21 @@ Statistics = {}
 Statistics.logger = nil
 
 function Statistics.resetStatistics()
-    global.SpiceRack_Statistics = global.SpiceRack_Statistics or {}
-    global.SpiceRack_Statistics.ItemStatistics = global.SpiceRack_Statistics.ItemStatistics or {}
-    global.SpiceRack_Statistics.ItemStatisticsRunning = nil
+    global.SpiceRack_Decaying_Goods_Statistics = global.SpiceRack_Decaying_Goods_Statistics or {}
+    global.SpiceRack_Decaying_Goods_Statistics.ItemStatistics = global.SpiceRack_Decaying_Goods_Statistics.ItemStatistics or {}
+    global.SpiceRack_Decaying_Goods_Statistics.ItemStatisticsRunning = nil
 end
 
 function Statistics.copyStatistics()
-    if not global.SpiceRack_Statistics.ItemStatisticsRunning then
+    if not global.SpiceRack_Decaying_Goods_Statistics.ItemStatisticsRunning then
         -- setup on first round ever
-        global.SpiceRack_Statistics.ItemStatisticsRunning = {}
+        global.SpiceRack_Decaying_Goods_Statistics.ItemStatisticsRunning = {}
         return
     end
         
-    global.SpiceRack_Statistics.ItemStatistics = table.deepcopy(global.SpiceRack_Statistics.ItemStatisticsRunning)
+    global.SpiceRack_Decaying_Goods_Statistics.ItemStatistics = table.deepcopy(global.SpiceRack_Decaying_Goods_Statistics.ItemStatisticsRunning)
     
-    for _, stat in pairs(global.SpiceRack_Statistics.ItemStatisticsRunning) do
+    for _, stat in pairs(global.SpiceRack_Decaying_Goods_Statistics.ItemStatisticsRunning) do
         -- reset only "some" values every "round". Others are stay intact.
         stat.current_amount = 0
         stat.container_count = 0
@@ -27,11 +27,11 @@ function Statistics.copyStatistics()
 end
 
 function Statistics.updateStatistics(itemname, new_count_ceiling, new_fraction, int_diff, max_decay_factor, per_hour_exponent, fill_factor)
-    if not global.SpiceRack_Statistics.ItemStatisticsRunning then
+    if not global.SpiceRack_Decaying_Goods_Statistics.ItemStatisticsRunning then
         return
     end
 
-    local specificItemStatistics = global.SpiceRack_Statistics.ItemStatisticsRunning[itemname]
+    local specificItemStatistics = global.SpiceRack_Decaying_Goods_Statistics.ItemStatisticsRunning[itemname]
     specificItemStatistics = specificItemStatistics or 
         {
             current_amount = 0,
@@ -50,11 +50,11 @@ function Statistics.updateStatistics(itemname, new_count_ceiling, new_fraction, 
     specificItemStatistics.container_count = specificItemStatistics.container_count + 1
     specificItemStatistics.fill_factor_sum = specificItemStatistics.fill_factor_sum + fill_factor
     
-    global.SpiceRack_Statistics.ItemStatisticsRunning[itemname] = specificItemStatistics
+    global.SpiceRack_Decaying_Goods_Statistics.ItemStatisticsRunning[itemname] = specificItemStatistics
 end
 
 function Statistics.logStatistics(nextUpdateInSec)
-    if not next(global.SpiceRack_Statistics.ItemStatistics) then
+    if not next(global.SpiceRack_Decaying_Goods_Statistics.ItemStatistics) then
         Statistics.logger.manual(
             string.format("no item statistics yet, wait for next update in ~%0.2f sec.", nextUpdateInSec),
             true)
@@ -64,7 +64,7 @@ function Statistics.logStatistics(nextUpdateInSec)
     Statistics.logger.manual("item statistics:", true)
 
     for itemname, _ in pairs(item_decay_defaults) do
-        local stat = global.SpiceRack_Statistics.ItemStatistics[itemname]
+        local stat = global.SpiceRack_Decaying_Goods_Statistics.ItemStatistics[itemname]
         if stat then
             Statistics.logger.manual(
                 string.format("%s (%d): amount: %d, overall_decayed: %d, fraction: %0.6f, max decay: %0.4f%% in %0.2f sec. (avg fill_factor %0.2f%%)",

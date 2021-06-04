@@ -15,8 +15,6 @@ local slotgui = require('script/slotgui')
 
 local item_decay_defaults = require('item_decay_defaults')
 
-local updateContainers = require('script/updatecontainers')
-
 local function attachUpdateContainers()
     updateContainers.containers = containers
     updateContainers.itemvalues = itemvalues
@@ -52,9 +50,12 @@ script.on_init(function()
     containers.rebuildContainers()
     itemvalues.rebuildItemValues()
 
-    global.SpiceRack_UpdateSlot = 0
+    global.SpiceRack_Decaying_Goods_UpdateSlot = 0
 
     statistics.resetStatistics()
+    
+    containers.registerEvents()
+    attachUpdateContainers()
 end)
 
 script.on_configuration_changed(function()
@@ -65,10 +66,12 @@ script.on_configuration_changed(function()
     containers.rebuildContainers()
     itemvalues.rebuildItemValues()
 
-    global.SpiceRack_UpdateSlot = 0
+    global.SpiceRack_Decaying_Goods_UpdateSlot = 0
     
     --Never reset statistics
     --statistics.resetStatistics()
+    containers.registerEvents()
+    attachUpdateContainers()
 end)
 
 script.on_load(function()
@@ -95,7 +98,7 @@ end)
 
 
 commands.add_command("spice_rack_item_statistics", "displays a statistics about items and how much already decayed", function()
-    local nextUpdateInSec = (settingswrapper.slot_count - global.SpiceRack_UpdateSlot) * settingswrapper.interval / 60
+    local nextUpdateInSec = (settingswrapper.slot_count - global.SpiceRack_Decaying_Goods_UpdateSlot) * settingswrapper.interval / 60
     statistics.logStatistics(nextUpdateInSec)
 end)
 

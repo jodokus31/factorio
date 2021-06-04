@@ -12,8 +12,8 @@ UpdateContainers.slotgui = nil
 
 function UpdateContainers.updateContainers()
 
-    local update_slot = global.SpiceRack_UpdateSlot
-    global.SpiceRack_UpdateSlot = (update_slot + 1) % UpdateContainers.settingswrapper.slot_count
+    local update_slot = global.SpiceRack_Decaying_Goods_UpdateSlot
+    global.SpiceRack_Decaying_Goods_UpdateSlot = (update_slot + 1) % UpdateContainers.settingswrapper.slot_count
     
     if UpdateContainers.settingswrapper.debug_mode >= 3 then
         UpdateContainers.slotgui.updateSlotGui(game.connected_players, update_slot)

@@ -1,0 +1,10 @@
+
+global.SpiceRack_Decaying_Goods_Containers = global.SpiceRack_Decaying_Goods_Containers or {}
+global.SpiceRack_Decaying_Goods_SlotToUnitNumbers = global.SpiceRack_Decaying_Goods_SlotToUnitNumbers or {}
+global.SpiceRack_Decaying_Goods_UpdateSlot = global.SpiceRack_Decaying_Goods_UpdateSlot or 0
+global.SpiceRack_Decaying_Goods_AddSlot = global.SpiceRack_Decaying_Goods_UpdateSlot or 0
+
+global.SpiceRack_Decaying_Goods_Statistics = global.SpiceRack_Decaying_Goods_Statistics or {}
+global.SpiceRack_Decaying_Goods_Statistics.ItemStatistics = global.SpiceRack_Decaying_Goods_Statistics.ItemStatistics or {}
+global.SpiceRack_Decaying_Goods_Statistics.ItemStatisticsRunning = nil
+
