@@ -201,23 +201,27 @@ Debug mode for decaying goods - 0=off, 1=errors only, 2=errors and warning, 3=ad
 Simple Time display similar to playtime mod by thuejk. (Credits to thuejk for looking up code)
 
 ## The Spice Rack - Turret Inspector
-The ammo levels of gun turrets are getting inspected:
-If ammo is equal or below a player defined mark (default: 8) a grey warning is shown on map.
-If ammo gets empty a red warning is shown on map
+The ammo levels of gun turrets are getting inspected:\
+If ammo is low a grey warning is shown on map.\
+If ammo is almost empty a yellow warning is shown on map.\
+If ammo is empty a red warning is shown on map.
+
+Newly placed turrets are considered after at least 20 seconds after placing to give a chance to fill the turret before the warnings gets shown.
 
 ### Commands
 There are some command line commands:\
-/spice_rack_active_turrets - displays a technical overview over turrets\
+/spice_rack_active_turrets - displays a technical overview over turret data\
 /spice_rack_rebuild_turrets - rebuild turrets lists\
 
 ### Options
 Show turrets warnings - If disabled, no warnings are shown at all for current player\
-Low ammo indicator - If ammo is lower or equal this value, the turret is marked grey
+Low ammo indicator - If ammo is below this, the turret is marked grey\
+Almost empty indicator - If ammo is below this, the turret is marked yellow
 
 ### Technical background
 The mods keeps track over all placed turrets and investigates the inventory. \
 \
-To ensure performance, the turrets are handled not all at once, but they are distributed over a timespan of ~10 sec. When a turret is added, it's assign to an alternating slot. One slot is handled each interval of 26 ticks. The amount of slots is a prime value: 23. 26*23 ticks ->  598 ticks ~ 2 min.
+To ensure performance, the turrets are handled not all at once, but they are distributed over a timespan of ~10 sec. When a turret is added, it is assigned to an alternating slot. One slot is handled each interval of 26 ticks. The amount of slots is the prime value: 23. 26*23 ticks ->  598 ticks ~10 sec.
 
 ## The Spice Rack - Core
 Core functions for Spice Rack

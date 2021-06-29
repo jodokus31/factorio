@@ -10,5 +10,11 @@ data:extend({
   		name = "ammo-low",
   		icon = "__spice-rack-turret-inspector__/graphics/ammo-low.png",
   		icon_size = 64,
+	},
+	{
+		type = "virtual-signal",
+  		name = "ammo-almost-empty",
+  		icon = "__spice-rack-turret-inspector__/graphics/ammo-almost-empty.png",
+  		icon_size = 64,
 	}
 })

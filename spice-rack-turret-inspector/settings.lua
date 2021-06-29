@@ -22,10 +22,21 @@ table.insert(settings,
 table.insert(settings,
     {
         type = "int-setting",
-        name = "spice-rack-turret-inspector-low-ammo",
+        name = "spice-rack-turret-inspector-ammo-low",
         order = "c",
         setting_type = "runtime-per-user",
-        default_value = 8,
+        default_value = 7,
+        minimum_value = 0,
+        maximum_value = 200,
+    })
+
+table.insert(settings,
+    {
+        type = "int-setting",
+        name = "spice-rack-turret-inspector-ammo-almost-empty",
+        order = "d",
+        setting_type = "runtime-per-user",
+        default_value = 3,
         minimum_value = 0,
         maximum_value = 200,
     })

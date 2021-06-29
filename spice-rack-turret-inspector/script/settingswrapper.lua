@@ -8,7 +8,8 @@ SettingsWrapper.debug_mode = 0
 
 --per user
 SettingsWrapper.show_turret_warnings = {}
-SettingsWrapper.low_ammo = {}
+SettingsWrapper.ammo_low = {}
+SettingsWrapper.ammo_almost_empty = {}
 
 --startup 
 SettingsWrapper.slot_count = 0
@@ -37,15 +38,26 @@ function SettingsWrapper.resetShowTurretWarnings()
     SettingsWrapper.show_turret_warnings = {}
 end
 
-function SettingsWrapper.readLowAmmo(player_index)
-    if not SettingsWrapper.low_ammo[player_index] then
-        SettingsWrapper.low_ammo[player_index] = settingsutil.get_runtime_setting(player_index, "turret-inspector-low-ammo")
+function SettingsWrapper.readAmmoLow(player_index)
+    if not SettingsWrapper.ammo_low[player_index] then
+        SettingsWrapper.ammo_low[player_index] = settingsutil.get_runtime_setting(player_index, "turret-inspector-ammo-low")
     end
-    return SettingsWrapper.low_ammo[player_index]
+    return SettingsWrapper.ammo_low[player_index]
 end
 
-function SettingsWrapper.resetLowAmmo()
-    SettingsWrapper.low_ammo = {}
+function SettingsWrapper.resetAmmoLow()
+    SettingsWrapper.ammo_low = {}
+end
+
+function SettingsWrapper.readAmmoAlmostEmpty(player_index)
+    if not SettingsWrapper.ammo_almost_empty[player_index] then
+        SettingsWrapper.ammo_almost_empty[player_index] = settingsutil.get_runtime_setting(player_index, "turret-inspector-ammo-almost-empty")
+    end
+    return SettingsWrapper.ammo_almost_empty[player_index]
+end
+
+function SettingsWrapper.resetAmmoAlmostEmpty()
+    SettingsWrapper.ammo_almost_empty = {}
 end
 
 function SettingsWrapper.onModSettingsChanged(event, logger)
@@ -61,8 +73,11 @@ function SettingsWrapper.onModSettingsChanged(event, logger)
     elseif event.setting == "spice-rack-turret-inspector-show-turret-warnings" then
         SettingsWrapper.resetShowTurretWarnings()
 
-    elseif event.setting == "spice-rack-turret-inspector-low-ammo" then
-        SettingsWrapper.resetLowAmmo()
+    elseif event.setting == "spice-rack-turret-inspector-ammo-low" then
+        SettingsWrapper.resetAmmoLow()
+
+    elseif event.setting == "spice-rack-turret-inspector-ammo-almost-empty" then
+        SettingsWrapper.resetAmmoAlmostEmpty()
     end
 end
 

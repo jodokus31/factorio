@@ -11,7 +11,10 @@ function Turrets.addTurret(entity)
     { 
         entity = entity,
         force_name = entity.force.name,
+        automated_ammo_count = entity.prototype.automated_ammo_count,
+        created_tick = game.tick,
     }
+
     tableutil.add(global.SpiceRack_TurretInspector_SlotToUnitNumbers[global.SpiceRack_TurretInspector_AddSlot], entity.unit_number)
     
     Turrets.logger.info("add turret " .. entity.unit_number .. " in slot " .. global.SpiceRack_TurretInspector_AddSlot)
@@ -83,17 +86,20 @@ function Turrets.logActiveTurrets(logFunc)
     logFunc("overall count: " .. count_sum)
 end
 
-function Turrets.getTurretsToUpdatePerForce(slot)
+function Turrets.getTurretsToUpdatePerForce(slot, tick)
     local turrets_per_force = {}
     
     local unit_numbers_to_update = global.SpiceRack_TurretInspector_SlotToUnitNumbers[slot]
     for _, unit_number in pairs(unit_numbers_to_update) do 
         
         local turret = global.SpiceRack_TurretInspector_Turrets[unit_number]
-        local force_name = turret.force_name
 
-        turrets_per_force[force_name] = turrets_per_force[force_name] or {}
-        table.insert(turrets_per_force[force_name], turret)
+        if (tick - (turret.created_tick or 0) > constants.WAIT_TICKS_FOR_NEWLY_PLACED_TURRETS) then
+            
+            local force_name = turret.force_name
+            turrets_per_force[force_name] = turrets_per_force[force_name] or {}
+            table.insert(turrets_per_force[force_name], turret)
+        end
     end
     return turrets_per_force
 end
