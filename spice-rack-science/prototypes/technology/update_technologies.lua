@@ -16,6 +16,7 @@ end
 ------ >> Rocket Silo
 if settingsutil.get_startup_setting("rocket-silo") then
     tableutil.add(data.raw.technology['rocket-silo'].prerequisites, "circuit-network", true)
+    tableutil.add(data.raw.technology['rocket-silo'].prerequisites, "military-science-pack", true)
     tableutil.add(data.raw.technology['rocket-silo'].unit.ingredients, {"military-science-pack", 1})
 end
 ------ << Rocket Silo

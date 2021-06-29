@@ -84,7 +84,7 @@ if settingsutil.get_startup_setting("rocket-silo") then
 
     tableutil.remove(
         data.raw.recipe['rocket-silo'].ingredients,
-        function (i) return i and i[0] == "concrete" end)
+        function (i) return i and i[1] == "concrete" end)
 
     tableutil.add(data.raw.recipe['rocket-silo'].ingredients, {"refined-concrete", 1000})
     tableutil.add(data.raw.recipe['rocket-silo'].ingredients, {"programmable-speaker", 1})
