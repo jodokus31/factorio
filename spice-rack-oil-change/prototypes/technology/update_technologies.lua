@@ -3,7 +3,7 @@ local tableutil = require('__spice-rack-core__/util/tableutil')
 
 ------ >> Oil Change
 if settingsutil.get_startup_setting("oil-change") ~= "disabled" then
-    if settingsutil.get_startup_setting("oil-change") == "basic oil and research" then
+    if settingsutil.get_startup_setting("oil-change") == "research" then
     
         local no_chemical_science_techs = {"lubricant", "electric-engine", "lubricant", "robotics", "construction-robotics", "logistic-robotics"}
 
