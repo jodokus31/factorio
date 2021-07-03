@@ -1,8 +1,15 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.3
+Date: 2021.07.03
+  Changes:
+    - Fix changelog.
+---------------------------------------------------------------------------------------------------
 Version: 0.0.2
-
-- Fix rocket silo recipe and science prerequisites.
+Date: 2021.06.30
+  Changes:
+    - Fix rocket silo recipe and science prerequisites.
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.1
-
-- Initial Release.
+Date: 2021.06.30
+  Changes:
+    - Initial Release.

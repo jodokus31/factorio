@@ -1,8 +1,11 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.2
-
-- Fix robo research to dont require chemical science
+Date: 2021.07.03
+  Changes:
+    - Fix robo research to dont require chemical science.
+    - Fix changelog
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.1
-
-- Initial Release.
+Date: 2021.06.30
+  Changes:
+    - Initial Release.
